@@ -71,7 +71,7 @@ export default function ProductDetailsPage() {
       </AnimationWrapper>
 
       {/* ── Product Layout: Image + Details ── */}
-      <div className="flex gap-8">
+      <div className="flex flex-col lg:flex-row gap-8">
         {/* Left — Gallery */}
         <div className="flex-1 min-w-0">
           {/* Main Image aspect-16/10*/}
@@ -97,7 +97,7 @@ export default function ProductDetailsPage() {
           </AnimationWrapper>
 
           {/* Thumbnails */}
-          <div className="flex gap-3 mt-4">
+          <div className="flex flex-wrap gap-3 mt-4">
             {productImages.map((img, idx) => (
               <AnimationWrapper key={idx} type="fade-up" duration={0.4} delay={0.15 + idx * 0.05}>
                 <button
@@ -130,7 +130,7 @@ export default function ProductDetailsPage() {
         </div>
 
         {/* Right — Details Sidebar */}
-        <div className="w-[380px] shrink-0">
+        <div className="max-w-[380px] w-full shrink-0">
           {!isBiddingMode ? (
             <div className="space-y-5">
               {/* Auction Badge & Title */}
@@ -163,7 +163,7 @@ export default function ProductDetailsPage() {
 
               {/* Action Buttons */}
               <AnimationWrapper type="fade-left" duration={0.5} delay={0.2} >
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col md:flex-row gap-3">
                   <button
                     onClick={() => setIsBiddingMode(true)}
                     className="w-full py-4 bg-[#E78F23] hover:bg-[#E78F23]/90 text-white text-sm font-bold rounded-xl transition-all shadow-[0_6px_24px_rgba(231,143,35,0.35)] hover:shadow-[0_8px_30px_rgba(231,143,35,0.5)] active:scale-[0.98] capitalize tracking-wide"

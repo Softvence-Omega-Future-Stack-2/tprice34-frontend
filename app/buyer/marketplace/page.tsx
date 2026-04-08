@@ -219,7 +219,7 @@ export default function MarketplacePage() {
   return (
     <div className="  mx-auto relative z-0">
       {/* ── Page Header ── */}
-      <div className="flex items-start justify-between mb-10">
+      <div className="flex   items-start justify-between mb-10">
         <AnimationWrapper type="fade-down" duration={0.5}>
           <div>
             <h2 className="text-3xl font-clash font-bold tracking-tight">
@@ -233,7 +233,7 @@ export default function MarketplacePage() {
 
         {/* Category Tabs */}
         <AnimationWrapper type="fade-down" duration={0.5} delay={0.1}>
-          <div className="flex items-center gap-1.5 bg-[#18181A] border border-[#2C2C2E] rounded-full p-1.5">
+          <div className="hidden md:flex items-center gap-1.5 bg-[#18181A] border border-[#2C2C2E] rounded-full p-1.5">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -389,7 +389,7 @@ export default function MarketplacePage() {
 
         {/* ── Product Grid ── */}
         <div className="flex-1">
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {filteredAssets.map((asset, index) => (
               <AnimationWrapper key={asset.id} type="fade-up" duration={0.5} delay={0.05 * (index % 3)}>
                 <Link href={`/buyer/marketplace/${asset.id}`}>

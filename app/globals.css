@@ -138,7 +138,8 @@
   }
 
   html {
-    @apply font-sans;
+    @apply font-sans overflow-x-hidden;
+    scroll-behavior: smooth;
   }
 }
 

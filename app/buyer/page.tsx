@@ -26,7 +26,7 @@ export default function Home() {
       </AnimationWrapper>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-4 gap-[50px]">
+      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[50px]">
         <AnimationWrapper type="fade-up" duration={0.5} delay={0.05}>
           <StatCard icon={<Gavel className="text-primary w-6 h-6" />} count="2" label="Active Bids" />
         </AnimationWrapper>
@@ -43,7 +43,7 @@ export default function Home() {
       </div>
 
       {/* Two Column Layout */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Active Bids */}
         <AnimationWrapper type="fade-right" duration={0.6} delay={0.1}>
           <div className="bg-foreground p-7 rounded-2xl border border-primary2/30 shadow-xl hover:border-[#E78F23]/20 transition-colors"
@@ -127,7 +127,7 @@ export default function Home() {
           </div>
         </AnimationWrapper>
 
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <AnimationWrapper type="zoom" duration={0.5} delay={0.1}>
             <ListingCard
               image="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800"

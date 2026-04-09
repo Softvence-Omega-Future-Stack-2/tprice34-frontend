@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Sidebar from "../components/BuyerSidebar";
 import Topbar from "../components/Topbar";
+import SellerSidebar from "../components/SellerSidebar";
 
 export default function BuyerLayout({
   children,
@@ -16,7 +16,7 @@ export default function BuyerLayout({
 
   return (
     <div className="flex h-screen bg-background text-white font-inter overflow-hidden relative">
-      <Sidebar isSidebarOpen={isSidebarOpen} onClose={onClose} />
+      <SellerSidebar isSidebarOpen={isSidebarOpen} onClose={onClose} />
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden relative">

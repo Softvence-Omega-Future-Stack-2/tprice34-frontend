@@ -77,7 +77,7 @@ export default function Sidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boo
                   : "text-gray-400 hover:text-white hover:bg-white/5"
                   }`}
               >
-                <item.icon className="w-[18px] h-[18px]" />
+                <item.icon className="w-4.5 h-4.5" />
                 {item.label}
               </Link>
             );
@@ -92,7 +92,7 @@ export default function Sidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boo
               }}
               className="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white transition-colors font-medium rounded-xl hover:bg-white/5"
             >
-              <item.icon className="w-[18px] h-[18px]" />
+              <item.icon className="w-4.5 h-4.5" />
               {item.label}
             </Link>
           ))}
@@ -102,7 +102,7 @@ export default function Sidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boo
         <div className="p-5 mt-auto mb-6 mx-4 rounded-2xl bg-linear-to-br from-[#EEA341] to-[#C76E12] relative shadow-[0_10px_30px_rgba(231,143,35,0.2)] text-white overflow-hidden group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full blur-3xl -mr-10 -mt-10 group-hover:opacity-20 transition-opacity"></div>
           <button className="absolute top-3 right-3 text-white/70 hover:text-white z-10 transition-colors">
-            <X className="w-[14px] h-[14px]" />
+            <X className="w-3.5 h-3.5" />
           </button>
           <h3 className="font-bold text-lg mb-1.5 font-clash">Upgrade to VIP!</h3>
           <p className="text-[11px] text-white/90 mb-5 leading-relaxed">Unlock Premium Features And Offers</p>

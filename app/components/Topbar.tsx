@@ -29,7 +29,7 @@ export default function Topbar({ setIsSidebarOpen }: { setIsSidebarOpen: (open: 
 
       <div className="flex items-center gap-4 lg:gap-7 ml-4 lg:ml-8">
         <button className="relative text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full">
-          <Bell className="w-5 h-5 lg:w-[22px] lg:h-[22px]" />
+          <Bell className="w-5 h-5 lg:w-5.5 lg:h-5.5" />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-[#111113]"></span>
         </button>
         <div className="hidden sm:block w-px h-8 bg-[#2C2C2E]"></div>

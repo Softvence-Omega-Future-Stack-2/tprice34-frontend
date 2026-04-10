@@ -8,26 +8,26 @@ import {
   Building2,
   Gavel,
   BadgePercent,
-  List as ListIcon,
   Crown,
   Settings,
   X,
+  Heart,
 } from "lucide-react";
 
 const navItems = [
   { href: "/buyer", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/buyer/marketplace", icon: Building2, label: "Marketplace" },
   { href: "/buyer/mybids", icon: Gavel, label: "My Bids" },
-  { href: "#", icon: BadgePercent, label: "My Offer" },
-  { href: "#", icon: ListIcon, label: "My Listings" },
+  { href: "/buyer/my-offer", icon: BadgePercent, label: "My Offer" },
+  { href: "/buyer/saved-items", icon: Heart, label: "Saved Items" },
 ];
 
 const secondaryItems = [
-  { href: "#", icon: Crown, label: "VIP Deals" },
+  { href: "/buyer/vip-deals", icon: Crown, label: "VIP Deals" },
   { href: "#", icon: Settings, label: "Settings" },
 ];
 
-export default function Sidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boolean, onClose: () => void }) {
+export default function BuyerSidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boolean, onClose: () => void }) {
   const pathname = usePathname();
 
   return (

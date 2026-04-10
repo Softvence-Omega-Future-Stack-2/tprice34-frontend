@@ -161,7 +161,7 @@ export default function SellerSettings() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-shrink-0 lg:w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 group ${activeTab === tab.id
+                className={`shrink-0 lg:w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 group ${activeTab === tab.id
                   ? "bg-[#1C1C1E] border border-[#2C2C2E] text-primary2 shadow-lg"
                   : "text-gray-400 hover:text-gray-200 hover:bg-[#1C1C1E]/50 border border-transparent"
                   }`}
@@ -304,7 +304,7 @@ export default function SellerSettings() {
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <div className="mb-8 font-clash">
                     <h3 className="text-2xl font-medium text-white">Change Password</h3>
-                    <div className="h-0.5 bg-gradient-to-r from-[#2C2C2E] to-transparent mt-4 w-full" />
+                    <div className="h-0.5 bg-linear-to-r from-[#2C2C2E] to-transparent mt-4 w-full" />
                   </div>
 
                   <div className="space-y-8 max-w-2xl">
@@ -464,9 +464,9 @@ export default function SellerSettings() {
 
                     {/* Security Footnote */}
                     <div className="bg-[#111113]/40 border border-[#2C2C2E] rounded-2xl p-6 relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary2/5 blur-[40px] rounded-full translate-x-16 -translate-y-16" />
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary2/5 blur-2xl rounded-full translate-x-16 -translate-y-16" />
                       <div className="flex gap-4 relative z-10">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary2/10 flex items-center justify-center border border-primary2/20">
+                        <div className="shrink-0 w-10 h-10 rounded-xl bg-primary2/10 flex items-center justify-center border border-primary2/20">
                           <ShieldCheck className="w-5 h-5 text-primary2" />
                         </div>
                         <div>
@@ -489,7 +489,7 @@ export default function SellerSettings() {
       {/* Payment Method Modal */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}

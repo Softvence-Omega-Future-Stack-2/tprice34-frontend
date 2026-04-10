@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import React, { useState } from "react";
 import { Eye, MapPin, ChevronDown, RotateCcw, Filter, X } from "lucide-react";
@@ -169,7 +169,7 @@ const assets: Asset[] = [
 ];
 
 /* ─── Page Component ─── */
-export default function MarketplacePage() {
+export default function VIPDeals() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -224,11 +224,11 @@ export default function MarketplacePage() {
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6 lg:mb-10">
         <AnimationWrapper type="fade-down" duration={0.5}>
           <div>
-            <h2 className="text-2xl sm:text-3xl font-clash font-bold tracking-tight">
-              Exclusive Collection
+            <h2 className="text-2xl sm:text-3xl font-clash font-medium tracking-wide">
+                 VIP Deals
             </h2>
-            <p className="text-gray-500 text-xs sm:text-sm mt-1 sm:mt-2 font-medium">
-              Discover the world&apos;s finest assets available for acquisition.
+            <p className="text-white text-xs sm:text-sm mt-1 sm:mt-2 font-medium">
+             Exclusive off-market listings available only to VIP members
             </p>
           </div>
         </AnimationWrapper>
@@ -320,7 +320,7 @@ export default function MarketplacePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredAssets.map((asset, index) => (
               <AnimationWrapper key={asset.id} type="fade-up" duration={0.5} delay={0.05 * (index % 3)}>
-                <Link href={`/buyer/marketplace/${asset.id}`}>
+                <Link href={`/buyer/vip-deals/${asset.id}`}>
                   <MarketplaceCard asset={asset} />
                 </Link>
               </AnimationWrapper>
@@ -385,11 +385,10 @@ function FilterSidebar({
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`text-left px-3 sm:px-4 py-2 rounded-lg text-sm transition-all ${
-                activeCategory === cat
-                  ? "bg-[#2C2C2E] text-white font-medium"
-                  : "text-gray-500 hover:text-gray-300"
-              }`}
+              className={`text-left px-3 sm:px-4 py-2 rounded-lg text-sm transition-all ${activeCategory === cat
+                ? "bg-[#2C2C2E] text-white font-medium"
+                : "text-gray-500 hover:text-gray-300"
+                }`}
             >
               {cat}
             </button>

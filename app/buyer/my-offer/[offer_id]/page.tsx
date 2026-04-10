@@ -56,7 +56,7 @@ const OfferDetails = () => {
       <div className="w-full space-y-8">
 
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-white/60 text-sm md:text-base font-medium font-clash">
+        <div className="flex items-center gap-2 text-white/60 text-sm md:text-[32px] font-medium font-clash">
           <Link href="/buyer/my-offer" className="hover:text-white transition-colors">My Offers</Link>
           <ChevronRight size={16} />
           <span className="text-white">Negotiation Details</span>

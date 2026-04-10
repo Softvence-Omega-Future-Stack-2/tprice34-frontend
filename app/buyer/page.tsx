@@ -21,7 +21,7 @@ export default function Home() {
       {/* Header */}
       <AnimationWrapper type="fade-down" duration={0.5}>
         <div>
-          <h2 className="text-[40px] font-clash font-medium tracking-tight">Welcome back, Alexander</h2>
+          <h2 className="text-[40px] font-clash font-medium tracking-wide">Welcome back, Alexander</h2>
         </div>
       </AnimationWrapper>
 

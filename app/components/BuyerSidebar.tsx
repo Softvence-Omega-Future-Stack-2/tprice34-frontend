@@ -24,7 +24,7 @@ const navItems = [
 
 const secondaryItems = [
   { href: "/buyer/vip-deals", icon: Crown, label: "VIP Deals" },
-  { href: "#", icon: Settings, label: "Settings" },
+  { href: "/buyer/settings", icon: Settings, label: "Settings" },
 ];
 
 export default function BuyerSidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boolean, onClose: () => void }) {

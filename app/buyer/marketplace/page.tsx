@@ -224,7 +224,7 @@ export default function MarketplacePage() {
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6 lg:mb-10">
         <AnimationWrapper type="fade-down" duration={0.5}>
           <div>
-            <h2 className="text-2xl sm:text-3xl font-clash font-bold tracking-tight">
+            <h2 className="text-2xl sm:text-[40px] font-clash font-medium tracking-wide">
               Exclusive Collection
             </h2>
             <p className="text-gray-500 text-xs sm:text-sm mt-1 sm:mt-2 font-medium">

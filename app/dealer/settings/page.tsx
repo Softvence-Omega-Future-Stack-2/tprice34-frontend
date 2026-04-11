@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import AnimationWrapper from '@/app/components/AnimationWrapper';
-import { Crown, User, Bell, Shield, CreditCard, Check, Plus } from 'lucide-react';
+import { Crown, User, Bell, Shield, CreditCard, Check, Plus, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function BuyerSettings() {
     const [notifications, setNotifications] = useState({
@@ -11,6 +12,8 @@ export default function BuyerSettings() {
         newListings: true,
         priceDrops: false,
     });
+    
+    const [isAddCardModalOpen, setIsAddCardModalOpen] = useState(false);
 
     const toggleNotification = (key: keyof typeof notifications) => {
         setNotifications((prev) => ({
@@ -20,8 +23,9 @@ export default function BuyerSettings() {
     };
 
     return (
-        <AnimationWrapper>
-            <div className="w-full max-w-[800px] mb-20 lg:mb-0">
+        <React.Fragment>
+            <AnimationWrapper>
+                <div className="w-full max-w-[800px] mb-20 lg:mb-0">
                 {/* Main Card */}
                 <div className="bg-[#18181A] rounded-[20px] shadow-[0_0_50px_rgba(231,143,35,0.03)] border border-[#E78F23]/10 md:p-10 p-6 relative overflow-hidden"
                     style={{
@@ -95,7 +99,7 @@ export default function BuyerSettings() {
                     <section className="mb-10 relative z-10">
                         <div className="flex items-center gap-2 mb-4">
                             <Bell className="w-[18px] h-[18px] text-gray-400" strokeWidth={2} />
-                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-widest uppercase">Notifications</h2>
+                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-[0.1em] uppercase">Notifications</h2>
                         </div>
                         <div className="space-y-2">
                             {[
@@ -124,7 +128,7 @@ export default function BuyerSettings() {
                     <section className="mb-10 relative z-10">
                         <div className="flex items-center gap-2 mb-4">
                             <Shield className="w-[18px] h-[18px] text-gray-400" strokeWidth={2} />
-                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-widest uppercase">Security</h2>
+                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-[0.1em] uppercase">Security</h2>
                         </div>
                         <div className="bg-[#18181B] rounded-[10px] p-4 flex items-center justify-between border border-[#2A2A2C] cursor-pointer hover:border-gray-600 transition-colors">
                             <span className="text-[13px] text-gray-400">Change Password</span>
@@ -136,9 +140,12 @@ export default function BuyerSettings() {
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-2">
                                 <CreditCard className="w-[18px] h-[18px] text-gray-400" strokeWidth={2} />
-                                <h2 className="text-[11px] font-semibold text-gray-300 tracking-widest uppercase">Payment Methods</h2>
+                                <h2 className="text-[11px] font-semibold text-gray-300 tracking-[0.1em] uppercase">Payment Methods</h2>
                             </div>
-                            <button className="flex items-center gap-1.5 text-xs font-medium text-[#facc15] hover:text-[#eab308] transition-colors">
+                            <button 
+                                onClick={() => setIsAddCardModalOpen(true)}
+                                className="flex items-center gap-1.5 text-xs font-medium text-[#facc15] hover:text-[#eab308] transition-colors"
+                            >
                                 <Plus className="w-3.5 h-3.5" strokeWidth={2} />
                                 Add Card
                             </button>
@@ -159,6 +166,89 @@ export default function BuyerSettings() {
 
                 </div>
             </div>
-        </AnimationWrapper>
+            </AnimationWrapper>
+
+            {/* Add Card Modal */}
+            <AnimatePresence>
+                {isAddCardModalOpen && (
+                    <React.Fragment>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsAddCardModalOpen(false)}
+                            className="fixed inset-0 bg-black/60 z-[100] backdrop-blur-sm"
+                        />
+                        <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none p-4">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                                className="w-full max-w-[420px] bg-[#1a1b1e] rounded-[16px] overflow-hidden pointer-events-auto border border-[#2A2A2C]"
+                            >
+                                {/* Header */}
+                                <div className="flex items-center justify-between p-6 border-b border-[#2A2A2C]">
+                                    <h2 className="text-white text-lg font-medium">Add Payment Method</h2>
+                                    <button
+                                        onClick={() => setIsAddCardModalOpen(false)}
+                                        className="text-gray-400 hover:text-white transition-colors"
+                                    >
+                                        <X className="w-5 h-5" strokeWidth={1.5} />
+                                    </button>
+                                </div>
+
+                                {/* Body */}
+                                <div className="p-6 space-y-5">
+                                    <div>
+                                        <label className="block text-gray-400 text-[13px] mb-2 font-medium">Name on Card</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Alexander Kingston"
+                                            className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-gray-400 text-[13px] mb-2 font-medium">Card Number</label>
+                                        <input
+                                            type="text"
+                                            placeholder="1234 5678 9012 3456"
+                                            className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
+                                        />
+                                    </div>
+
+                                    <div className="flex gap-4">
+                                        <div className="flex-1">
+                                            <label className="block text-gray-400 text-[13px] mb-2 font-medium">Expiry</label>
+                                            <input
+                                                type="text"
+                                                placeholder="MM/YY"
+                                                className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
+                                            />
+                                        </div>
+                                        <div className="flex-1">
+                                            <label className="block text-gray-400 text-[13px] mb-2 font-medium">CVC</label>
+                                            <input
+                                                type="text"
+                                                placeholder="•••"
+                                                className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <button className="w-full bg-[#dcb24a] hover:bg-[#c9a141] text-white font-medium py-3 rounded-[10px] mt-2 transition-colors">
+                                        Add Card
+                                    </button>
+
+                                    <p className="text-center text-xs text-gray-500 mt-2">
+                                        Your card details are encrypted and secure
+                                    </p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </React.Fragment>
+                )}
+            </AnimatePresence>
+        </React.Fragment>
     );
 }

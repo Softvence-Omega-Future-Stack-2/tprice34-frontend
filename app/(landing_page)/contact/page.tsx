@@ -1,0 +1,7 @@
+export default function ContactPage() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold text-white">Contact</h1>
+    </div>
+  );
+}

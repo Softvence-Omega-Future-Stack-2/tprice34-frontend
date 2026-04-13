@@ -10,7 +10,7 @@ export default function LandingLayout({
   return (
     <div className="min-h-screen bg-black flex flex-col">
       <LandingNavbar />
-      <main className="flex-grow">
+      <main className="grow">
         {children}
       </main>
       <LandingFooter />

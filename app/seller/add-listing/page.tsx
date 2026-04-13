@@ -366,7 +366,7 @@ export default function AddListing() {
   };
 
   return (
-    <div className="space-y-8 relative z-0">
+    <div className="space-y-8 relative z-0 max-w-[916px] mx-auto">
       {/* Header Section */}
       <AnimationWrapper type="fade-down" duration={0.5}>
         <div className="mb-6">
@@ -377,7 +377,7 @@ export default function AddListing() {
 
       <AnimationWrapper type="fade-up" duration={0.6} delay={0.1}>
         <div
-          className="bg-[#1C1C1E] p-8 md:p-10 rounded-2xl border border-[#2C2C2E] shadow-2xl overflow-hidden"
+          className="bg-[#1C1C1E] p-8 md:p-10 rounded-2xl border border-[#2C2C2E] shadow-2xl overflow-hidden "
           style={{
             boxShadow: "0 0 50px -12px rgba(178, 114, 31, 0.15)"
           }}
@@ -410,7 +410,7 @@ export default function AddListing() {
           </div>
 
           {/* Form Context Container */}
-          <div className="bg-[#111113]/50 rounded-2xl p-6 md:p-8 border border-[#2C2C2E]/60 min-h-[460px]">
+          <div className="bg-[#111113]/50 rounded-2xl p-6 md:p-8 border border-[#2C2C2E]/60  min-h-115">
             <AnimationWrapper key={currentStep} type="zoom" duration={0.4}>
               {renderStepContent()}
             </AnimationWrapper>

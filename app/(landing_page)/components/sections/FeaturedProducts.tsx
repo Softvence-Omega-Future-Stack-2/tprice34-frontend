@@ -83,7 +83,7 @@ export default function FeaturedProducts() {
           <div className="relative w-full md:w-64">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full bg-white/5 border border-white/10 px-6 py-4 rounded-lg flex items-center justify-between text-white hover:border-primary/50 transition-all text-sm font-medium"
+              className="cursor-pointer w-full bg-white/5 border border-white/10 px-6 py-4 rounded-lg flex items-center justify-between text-white hover:border-primary/50 transition-all text-sm font-medium"
             >
               {selectedCategory}
               <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
@@ -103,9 +103,8 @@ export default function FeaturedProducts() {
                         setSelectedCategory(cat);
                         setIsDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-6 py-4 hover:bg-primary/10 transition-colors text-sm ${
-                        selectedCategory === cat ? "text-primary" : "text-white/70"
-                      }`}
+                      className={`cursor-pointer w-full text-left px-6 py-4 hover:bg-primary/10 transition-colors text-sm ${selectedCategory === cat ? "text-primary" : "text-white/70"
+                        }`}
                     >
                       {cat}
                     </button>
@@ -131,16 +130,16 @@ export default function FeaturedProducts() {
             <div className="absolute top-6 left-6 px-4 py-1.5 bg-primary/20 backdrop-blur-md border border-primary/30 rounded-full text-primary text-xs font-bold uppercase tracking-widest">
               {mainProduct.tag}
             </div>
-            <div className="absolute bottom-10 left-10 right-10">
+            <div className="absolute bottom-0 left-10 right-10">
               <p className="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-2">{selectedCategory}</p>
               <h3 className="text-3xl font-bold text-white mb-2">{mainProduct.title}</h3>
               <div className="flex items-center gap-2 text-white/50 text-sm mb-6">
                 <MapPin className="w-4 h-4" />
                 {mainProduct.location}
               </div>
-              <button className="text-primary font-bold border-b border-primary/50 pb-1 hover:border-primary transition-all">
+              {/* <button className="text-primary font-bold border-b border-primary/50 pb-1 hover:border-primary transition-all">
                 View Details
-              </button>
+              </button> */}
             </div>
           </motion.div>
 
@@ -173,7 +172,7 @@ export default function FeaturedProducts() {
         </div>
 
         <div className="mt-16 text-center">
-          <button className="px-12 py-4 bg-primary text-black font-bold uppercase text-sm tracking-widest hover:bg-white transition-all duration-300 rounded-sm">
+          <button className="cursor-pointer px-8 py-4 bg-primary text-black font-bold uppercase text-sm tracking-widest hover:bg-white transition-all duration-300 rounded-sm">
             View All
           </button>
         </div>

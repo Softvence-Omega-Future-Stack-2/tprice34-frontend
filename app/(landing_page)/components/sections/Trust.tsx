@@ -2,65 +2,56 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, Zap, Star, Globe } from "lucide-react";
+import { ShieldCheck, Lock, History, Headset } from "lucide-react";
 
 const TRUST_PILLARS = [
   {
-    title: "Curated Selection",
-    desc: "Only the finest assets, handpicked by our world-class team of experts.",
-    icon: Star,
-  },
-  {
-    title: "Seamless Transactions",
-    desc: "Advanced secure escrow and legal processing for complex cross-border deals.",
-    icon: Zap,
-  },
-  {
-    title: "White-glove Service",
-    desc: "Exclusive 1-on-1 concierge support for every high-value acquisition.",
+    title: "Verified Dealers",
+    desc: "Every dealer undergoes rigorous vetting before listing on ExoticWorld.",
     icon: ShieldCheck,
   },
   {
-    title: "Global Network",
-    desc: "Direct access to private collections and off-market inventory worldwide.",
-    icon: Globe,
+    title: "Secure Transaction",
+    desc: "End-to-end encrypted communications and escrow-protected deals.",
+    icon: Lock,
+  },
+  {
+    title: "Full Transparency",
+    desc: "Complete asset history, documentation, and provenance verification.",
+    icon: History,
+  },
+  {
+    title: "Concierge Support",
+    desc: "Dedicated relationship managers available 24/7 for VIP members.",
+    icon: Headset,
   },
 ];
 
 export default function Trust() {
   return (
-    <section className="py-32 bg-black px-6">
+    <section className="py-24 bg-[#050505] px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-24 max-w-4xl mx-auto">
-          <motion.h4
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+        <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary text-[10px] font-bold tracking-[0.5em] uppercase mb-6"
+            className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4 block"
           >
-            Why Choose Us
-          </motion.h4>
+            BUILT ON TRUST
+          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-white text-4xl md:text-6xl font-serif leading-tight"
+            className="text-white text-4xl md:text-5xl font-serif"
           >
-            The Premier Destination For <span className="text-primary italic">Luxury Assets</span>
+            Why Exotic World
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-white/40 text-sm mt-6 max-w-2xl mx-auto leading-relaxed"
-          >
-            Experience the ultimate in curation and service across automotive, yachting, aviation, and real estate. Your journey to excellence starts here.
-          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {TRUST_PILLARS.map((pillar, i) => (
             <motion.div
               key={pillar.title}
@@ -68,25 +59,17 @@ export default function Trust() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative p-12 bg-[#0A0A0A] border border-[#D4AF37]/10 rounded-xl overflow-hidden"
+              className={`group p-8 bg-[#1A1A1A] rounded-sm transition-all duration-0 hover:border-b-2 hover:border-primary/50 flex flex-col items-start`}
             >
-              {/* Subtle Internal Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-black transition-all duration-500">
-                  <pillar.icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors italic">
-                  {pillar.title}
-                </h3>
-                <p className="text-white/40 text-sm leading-relaxed group-hover:text-white/60 transition-colors">
-                  {pillar.desc}
-                </p>
+              <div className="w-12 h-12 border border-primary/30 rounded-md flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-black transition-all duration-500">
+                <pillar.icon className="w-6 h-6 stroke-[1.2]" />
               </div>
-
-              {/* Precise Border Animation */}
-              <div className="absolute inset-0 border border-primary/0 group-hover:border-primary/30 transition-all duration-500" />
+              <h3 className="text-xl font-serif text-white mb-4">
+                {pillar.title}
+              </h3>
+              <p className="text-white/40 text-[13px] leading-relaxed font-light">
+                {pillar.desc}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -94,3 +77,4 @@ export default function Trust() {
     </section>
   );
 }
+

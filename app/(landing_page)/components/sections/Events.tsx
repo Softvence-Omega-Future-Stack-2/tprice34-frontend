@@ -76,7 +76,7 @@ export default function Events() {
               Events & Brand Credibility
             </motion.h2>
           </div>
-          <button className="px-6 py-2 border border-white/20 text-white text-sm hover:bg-white hover:text-black transition-all">
+          <button className="cursor-pointer px-6 py-2 border border-white/20 rounded-sm text-white text-sm hover:bg-white hover:text-black transition-all">
             View All
           </button>
         </div>
@@ -118,7 +118,7 @@ export default function Events() {
                   </div>
                 </div>
 
-                <button className="px-8 py-4 border border-primary text-white font-bold text-sm tracking-widest hover:bg-primary hover:text-black transition-all whitespace-nowrap">
+                <button className="cursor-pointer px-8 py-4 border border-primary rounded-sm text-white font-bold text-sm tracking-widest hover:bg-primary hover:text-black transition-all whitespace-nowrap">
                   Apply for Invitation
                 </button>
               </div>
@@ -129,13 +129,13 @@ export default function Events() {
           <div className="absolute top-1/2 -translate-y-1/2 left-6 right-6 flex justify-between pointer-events-none">
             <button
               onClick={prevSlide}
-              className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-primary hover:text-black transition-all pointer-events-auto shadow-2xl"
+              className="cursor-pointer w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-primary hover:text-black transition-all pointer-events-auto shadow-2xl"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextSlide}
-              className="w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center text-black hover:bg-white transition-all pointer-events-auto shadow-2xl"
+              className="cursor-pointer w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-primary hover:text-black transition-all pointer-events-auto shadow-2xl"
             >
               <ArrowRight className="w-5 h-5" />
             </button>

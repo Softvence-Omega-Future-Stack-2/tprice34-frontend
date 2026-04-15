@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function LastCTA() {
   return (
@@ -51,9 +52,9 @@ export default function LastCTA() {
           transition={{ delay: 0.2 }}
           className="pt-6"
         >
-          <button className="px-16 py-6 bg-primary text-black font-black text-lg uppercase tracking-[0.3em] hover:bg-white hover:scale-105 transition-all duration-300 rounded-sm shadow-[0_0_50px_rgba(212,175,55,0.4)]">
+          <Link href="/register" className="cursor-pointer px-12 py-4 bg-primary text-black font-black text-lg uppercase tracking-[0.3em] hover:bg-white hover:scale-105 transition-all duration-300 rounded-sm shadow-[0_0_50px_rgba(212,175,55,0.4)]">
             Register Now
-          </button>
+          </Link>
         </motion.div>
       </div>
 

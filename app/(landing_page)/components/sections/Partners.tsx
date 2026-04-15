@@ -2,14 +2,15 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const PARTNERS = [
-  { name: "FERRARI", logo: "🐎" },
-  { name: "LAMBORGHINI", logo: "🐂" },
-  { name: "MCLAREN", logo: "🏁" },
-  { name: "MERCEDES", logo: "⭐" },
-  { name: "BENTLEY", logo: "🦅" },
-  { name: "ROLLS ROYCE", logo: "💎" },
+  { name: "FERRARI", logo: "/images/landing/brand/ferrari.png" },
+  { name: "LAMBORGHINI", logo: "/images/landing/brand/lamborghini.png" },
+  { name: "MCLAREN", logo: "/images/landing/brand/mclaren.jpg" },
+  { name: "MERCEDES", logo: "/images/landing/brand/mercedes.png" },
+  { name: "BENTLEY", logo: "/images/landing/brand/bentley.png" },
+  { name: "ROLLS ROYCE", logo: "/images/landing/brand/rolls-royce.webp" },
 ];
 
 export default function Partners() {
@@ -22,7 +23,7 @@ export default function Partners() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="text-white/40 text-[10px] font-bold tracking-[0.4em] uppercase whitespace-nowrap"
+            className="text-white/40 text-md font-bold tracking-[0.4em] uppercase whitespace-nowrap"
           >
             Our Branding Partners
           </motion.h4>
@@ -41,7 +42,7 @@ export default function Partners() {
               whileHover={{ scale: 1.1, opacity: 1 }}
               className="flex flex-col items-center gap-4 group cursor-default"
             >
-              <span className="text-4xl">{partner.logo}</span>
+              <Image src={partner.logo} alt={partner.name} width={100} height={100} />
               <span className="text-white text-xs font-bold tracking-[0.2em] group-hover:text-primary transition-colors">
                 {partner.name}
               </span>

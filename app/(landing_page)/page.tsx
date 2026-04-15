@@ -8,6 +8,7 @@ import Trust from './components/sections/Trust'
 import HowItWorks from './components/sections/HowItWorks'
 import Reviews from './components/sections/Reviews'
 import LastCTA from './components/sections/LastCTA'
+import ScrollToTop from './components/ScrollToTop'
 
 export default function Main() {
   return (
@@ -38,6 +39,9 @@ export default function Main() {
 
       {/* Final Call to Action Section (Last Section before Footer) */}
       <LastCTA />
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   )
 }

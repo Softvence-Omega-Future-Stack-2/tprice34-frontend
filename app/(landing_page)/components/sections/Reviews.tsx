@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote, Star, Crown } from "lucide-react";
 
 interface Review {
   id: number;
@@ -10,29 +10,57 @@ interface Review {
   role: string;
   avatar: string;
   text: string;
+  assets: string;
 }
 
 const REVIEWS: Review[] = [
   {
     id: 1,
-    name: "Alexander Rossi",
-    role: "Collector",
+    name: "Alexander Petrov",
+    role: "Private Collector, Moscow",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=128&h=128&q=80",
-    text: "ExoticWorld transformed how I source private collections. The white-glove service and attention to detail during the acquisition of my 250 GTO was unlike anything I've experienced in 20 years of collecting.",
+    text: "ExoticWorld is unlike anything I've encountered. The off-market access alone is worth the membership. I acquired a Bugatti Chiron and a Monaco penthouse through a single relationship manager. Truly exceptional.",
+    assets: "BUGATTI CHIRON • MONACO PENTHOUSE"
   },
   {
     id: 2,
     name: "Elena Vance",
-    role: "Yacht Owner",
+    role: "Yacht Enthusiast, Monaco",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&facepad=2&w=128&h=128&q=80",
     text: "The verification process for high-value properties and yachts is unparalleled. I felt completely secure during my first cross-border transaction. Highly recommended for any serious investor.",
+    assets: "AZIMUT GRANDE 35M • AMALFI VILLA"
   },
   {
     id: 3,
     name: "Julian Thorne",
-    role: "Private Investor",
+    role: "Aviation Investor, London",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=128&h=128&q=80",
     text: "Finding off-market jets used to take months. With ExoticWorld's global network, I had three exclusive options presented to me within 48 hours. The speed and professionalism are truly elite.",
+    assets: "GULFSTREAM G650ER • ASPEN LODGE"
+  },
+  {
+    id: 4,
+    name: "Alexander Petrov",
+    role: "Private Collector, Moscow",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=128&h=128&q=80",
+    text: "ExoticWorld is unlike anything I've encountered. The off-market access alone is worth the membership. I acquired a Bugatti Chiron and a Monaco penthouse through a single relationship manager. Truly exceptional.",
+    assets: "BUGATTI CHIRON • MONACO PENTHOUSE"
+  },
+  {
+    id: 5,
+    name: "Elena Vance",
+    role: "Yacht Enthusiast, Monaco",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&facepad=2&w=128&h=128&q=80",
+    text: "The verification process for high-value properties and yachts is unparalleled. I felt completely secure during my first cross-border transaction. Highly recommended for any serious investor.",
+    assets: "AZIMUT GRANDE 35M • AMALFI VILLA"
+  },
+  {
+    id: 6,
+    name: "Julian Thorne",
+    role: "Aviation Investor, London",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=128&h=128&q=80",
+    text: "Finding off-market jets used to take months. With ExoticWorld's global network, I had three exclusive options presented to me within 48 hours. The speed and professionalism are truly elite.",
+    assets: "GULFSTREAM G650ER • ASPEN LODGE"
   },
 ];
 
@@ -43,97 +71,115 @@ export default function Reviews() {
   const prev = () => setActiveIndex((prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length);
 
   return (
-    <section className="py-40 bg-[#050505] px-6">
+    <section className="py-24 bg-[#050505] px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-24">
-          <motion.h4
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+        <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary text-[10px] font-bold tracking-[0.6em] uppercase mb-4"
+            className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4 block"
           >
-            Testimonials
-          </motion.h4>
+            CLIENT VOICES
+          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-white text-4xl md:text-6xl font-serif leading-tight italic"
+            className="text-white text-4xl md:text-5xl font-serif"
           >
-            What Our <span className="text-primary">Clients Say</span>
+            VIP Member Reviews
           </motion.h2>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          {/* Main Review Area */}
-          <div className="relative mb-32">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="flex justify-center mb-12"
-            >
-              <Quote className="w-16 h-16 text-primary/20" />
-            </motion.div>
+        <div className="max-w-7xl mx-auto relative group">
+          {/* Review Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-[#1A1A1A] rounded-2xl p-8 md:p-16 relative overflow-hidden"
+          >
+            {/* Background elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
             
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-center"
-              >
-                <p className="text-2xl md:text-4xl lg:text-5xl text-white/90 font-serif leading-[1.4] mb-12 italic max-w-5xl mx-auto">
-                  "{REVIEWS[activeIndex].text}"
-                </p>
-                <div className="space-y-2">
-                  <h4 className="text-2xl font-bold text-white tracking-wide italic">
-                    {REVIEWS[activeIndex].name}
-                  </h4>
-                  <p className="text-primary text-[10px] font-bold uppercase tracking-[0.4em]">
-                    {REVIEWS[activeIndex].role}
+            <div className="flex flex-col items-center text-center relative z-10 px-12 md:px-24">
+              <Quote className="w-16 h-16 text-primary/30 mb-8" strokeWidth={1} />
+              
+              <div className="flex gap-1 mb-10">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                ))}
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex flex-col items-center"
+                >
+                  <p className="text-xl md:text-2xl text-white/80 font-serif leading-relaxed mb-12 max-w-2xl">
+                    “{REVIEWS[activeIndex].text}”
                   </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
 
-            {/* Navigation Arrows */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 md:-left-12 lg:-left-24">
-              <button
-                onClick={prev}
-                className="w-16 h-16 rounded-full border border-white/5 bg-white/5 flex items-center justify-center text-white hover:border-primary/30 hover:bg-primary/10 transition-all duration-300"
-              >
-                <ArrowLeft className="w-6 h-6" />
-              </button>
-            </div>
-            <div className="absolute top-1/2 -translate-y-1/2 right-0 md:-right-12 lg:-right-24">
-              <button
-                onClick={next}
-                className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-black hover:bg-white transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.3)]"
-              >
-                <ArrowRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
+                  <div className="inline-flex items-center gap-2 border border-primary/30 rounded-full py-1.5 px-6 mb-10 bg-primary/5">
+                    <Crown className="w-4 h-4 text-primary" />
+                    <span className="text-[10px] md:text-[11px] font-bold text-primary tracking-[0.15em] uppercase">
+                      {REVIEWS[activeIndex].assets}
+                    </span>
+                  </div>
 
-          {/* Avatar Row */}
-          <div className="flex justify-center items-center gap-10">
+                  <div className="flex flex-col items-center">
+                    <img 
+                      src={REVIEWS[activeIndex].avatar} 
+                      alt={REVIEWS[activeIndex].name} 
+                      className="w-14 h-14 rounded-full object-cover border-2 border-primary/20 mb-4"
+                    />
+                    <h4 className="text-xl font-serif text-white mb-1">
+                      {REVIEWS[activeIndex].name}
+                    </h4>
+                    <p className="text-white/40 text-xs tracking-wider">
+                      {REVIEWS[activeIndex].role}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation Arrows (Inside the Card) */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-0 md:left-6 lg:left-8 z-20">
+                 <button onClick={prev} className="cursor-pointer w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
+                    <ArrowLeft className="w-5 h-5" />
+                 </button>
+              </div>
+              <div className="absolute top-1/2 -translate-y-1/2 right-0 md:right-6 lg:right-8 z-20">
+                  <button onClick={next} className="cursor-pointer w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
+                      <ArrowRight className="w-5 h-5" />
+                  </button>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Bottom Avatar Selectors */}
+          <div className="flex justify-center items-center gap-4 mt-12 pb-12">
             {REVIEWS.map((review, i) => (
               <button
                 key={review.id}
                 onClick={() => setActiveIndex(i)}
-                className={`relative w-20 h-20 rounded-full transition-all duration-700 p-1 ${
-                  activeIndex === i 
-                    ? "scale-125 border-2 border-primary ring-8 ring-primary/10" 
-                    : "scale-100 opacity-20 grayscale border-2 border-transparent hover:opacity-50 hover:grayscale-0"
+                className={`relative group transition-all duration-300 ${
+                  activeIndex === i ? "scale-115" : "scale-90 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 hover:scale-100"
                 }`}
               >
-                <div className="w-full h-full rounded-full overflow-hidden">
-                  <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
-                </div>
+                <img 
+                  src={review.avatar} 
+                  alt={review.name} 
+                  className={`w-10 h-10 rounded-full object-cover ${
+                    activeIndex === i ? "border-2 border-primary" : "border border-white/10"
+                  }`} 
+                />
               </button>
             ))}
           </div>
@@ -142,3 +188,4 @@ export default function Reviews() {
     </section>
   );
 }
+

@@ -107,10 +107,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6"
         >
-          <button className="px-10 py-4 border border-primary text-white text-sm font-semibold tracking-wide hover:bg-primary hover:text-black transition-all duration-300">
+          <button className="px-10 py-4 border border-primary rounded-sm cursor-pointer text-white text-sm font-semibold tracking-wide hover:bg-primary hover:text-black transition-all duration-300">
             Explore Listings
           </button>
-          <button className="px-10 py-4 bg-primary text-black text-sm font-bold tracking-wide hover:bg-white hover:text-black transition-all duration-300">
+          <button className="px-10 py-4 bg-primary text-black rounded-sm cursor-pointer text-sm font-bold tracking-wide hover:bg-white hover:text-black transition-all duration-300">
             Become a VIP Buyer
           </button>
         </motion.div>
@@ -129,7 +129,7 @@ export default function Hero() {
       </div>
 
       {/* Stats Bar */}
-      <div className="absolute bottom-0 left-0 w-full z-10 bg-black/60 backdrop-blur-md border-t border-white/10 hidden md:block">
+      <div className="absolute bottom-0 left-0 w-full z-10 bg-black/60 backdrop-blur-lg border-t border-white/10 hidden md:block">
         <div className="container mx-auto px-12 grid grid-cols-3 divide-x divide-white/10">
           {STATS.map((stat, i) => (
             <motion.div

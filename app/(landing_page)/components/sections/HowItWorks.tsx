@@ -2,91 +2,93 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { UserCheck, Search, ShieldCheck, Truck } from "lucide-react";
+import { Search, Gavel, ShieldCheck, Crown, ArrowRight } from "lucide-react";
 
 const STEPS = [
   {
-    num: "01",
-    title: "Register & Verify",
-    desc: "Create your exclusive profile and undergo a brief verification to access our private listings.",
-    icon: UserCheck
-  },
-  {
-    num: "02",
-    title: "Explore Collection",
-    desc: "Browse our off-market inventory of cars, yachts, and jets curated for elite buyers.",
+    title: "Browse Listings",
+    desc: "Explore our curated collection of supercars, estates, jets, and yachts. Filter by category, price, and exclusivity tier.",
     icon: Search
   },
   {
-    num: "03",
-    title: "Secure Transaction",
-    desc: "Finalize your deal through our secure legal frameworks and dedicated expert support.",
+    title: "Submit Offer / Make Bid",
+    desc: "Place a private offer or participate in our exclusive auction system. All bids are confidential and handled with discretion.",
+    icon: Gavel
+  },
+  {
+    title: "Verification & Paperwork",
+    desc: "Our dedicated team of experts handles all due diligence, asset verification, and legal documentation on your behalf.",
     icon: ShieldCheck
   },
   {
-    num: "04",
-    title: "Delivery & Concierge",
-    desc: "Receive your asset anywhere in the world with our white-glove shipping and logistics.",
-    icon: Truck
+    title: "Complete Luxury Purchase",
+    desc: "Finalize your acquisition with white-glove concierge support. Delivery, logistics, and aftercare — all arranged for you.",
+    icon: Crown
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="py-40 bg-black px-6">
+    <section className="py-24 bg-[#050505] px-6 overflow-hidden">
       <div className="container mx-auto">
-        <div className="text-center mb-32 max-w-4xl mx-auto">
-          <motion.h4
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+        <div className="text-center mb-20">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary text-[10px] font-bold tracking-[0.6em] uppercase mb-6"
+            className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4 block"
           >
-            Our Process
-          </motion.h4>
+            SIMPLE & SEAMLESS
+          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-white text-4xl md:text-6xl font-serif leading-tight italic"
+            className="text-white text-4xl md:text-5xl font-serif"
           >
-            How It <span className="text-primary">Works</span>
+            How It Works
           </motion.h2>
         </div>
 
         <div className="relative max-w-7xl mx-auto">
-          {/* Progress Line */}
-          <div className="hidden lg:block absolute top-[115px] left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent z-0" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-6">
             {STEPS.map((step, i) => (
               <motion.div
-                key={step.num}
+                key={step.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="relative text-center group"
+                className="relative text-center flex flex-col items-center group"
               >
-                {/* Number */}
-                <div className="text-6xl font-serif font-black text-white/5 mb-[-25px] group-hover:text-primary/10 transition-colors italic">
-                  {step.num}
-                </div>
+                {/* Connecting Arrow (Desktop) */}
+                {i < STEPS.length - 1 && (
+                  <div className="hidden lg:flex absolute top-16 left-[calc(50%+68px)] w-[calc(100%-136px)] items-center z-0">
+                    <div className="h-[1.5px] w-full bg-gradient-to-r from-transparent via-primary/40 to-primary relative">
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 border-t-[1.5px] border-r-[1.5px] border-primary rotate-45" />
+                    </div>
+                  </div>
+                )}
 
-                {/* Icon Circle */}
-                <div className="relative z-10 w-24 h-24 rounded-full bg-black border border-white/10 flex items-center justify-center mx-auto mb-10 group-hover:border-primary/50 group-hover:scale-110 transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,1)]">
-                  <step.icon className="w-8 h-8 text-primary/70 group-hover:text-primary transition-colors" />
-                  
-                  {/* Subtle Radar Pulse */}
-                  <div className="absolute inset-0 rounded-full border border-primary/20 animate-ping opacity-0 group-hover:opacity-100" />
+                {/* Circle Container */}
+                <div className="relative mb-10">
+                  {/* Dashed Border */}
+                  <div className="absolute inset-[-10px] rounded-full border border-dashed border-primary/20 group-hover:border-primary/40 transition-colors duration-500" />
+
+                  {/* Icon Circle with Gradient */}
+                  <div className="relative w-32 h-32 rounded-full flex items-center justify-center overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-105 border border-white/5">
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#2A241A] to-[#0A0A0A] opacity-90" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,transparent_70%)]" />
+                    <step.icon className="w-8 h-8 text-primary relative z-10 stroke-[1.2]" />
+                  </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-white mb-4 tracking-wide group-hover:text-primary transition-colors italic">
+                <h3 className="text-xl font-serif text-white mb-4 transition-colors group-hover:text-primary">
                   {step.title}
                 </h3>
-                <p className="text-white/30 text-xs leading-relaxed max-w-[200px] mx-auto group-hover:text-white/50 transition-colors">
+                <p className="text-white/40 text-[13px] leading-relaxed font-light max-w-[240px]">
                   {step.desc}
                 </p>
               </motion.div>
@@ -97,3 +99,4 @@ export default function HowItWorks() {
     </section>
   );
 }
+

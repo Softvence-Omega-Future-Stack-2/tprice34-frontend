@@ -34,7 +34,7 @@ const CATEGORIES = [
 export default function Categories() {
   return (
     <section className="py-32 bg-black px-6">
-      <div className="container mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-20">
           <motion.h4
             initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ export default function Categories() {
                 alt={cat.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              
+
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent group-hover:via-black/40 transition-all duration-300" />
 

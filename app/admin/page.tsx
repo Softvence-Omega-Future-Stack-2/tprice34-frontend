@@ -1,221 +1,342 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
-  Gavel,
-  BadgePercent,
-  List as ListIcon,
-  Heart,
+  Users,
   FileText,
-  Eye,
-  MapPin,
-  Pencil
+  Handshake,
+  ListOrdered,
+  CheckCircle2,
+  Clock,
+  ChevronRight,
 } from "lucide-react";
+import Image from "next/image";
 
-import AnimationWrapper from "../components/AnimationWrapper";
+// Mock data for display
+const stats = [
+  {
+    title: "Active Dealers",
+    value: "12",
+    trend: "+2 this week",
+    trendColor: "text-[#4ADE80]",
+    icon: <Users className="w-5 h-5 text-[#E78F23]" />,
+    glow: "shadow-[0_0_20px_-5px_rgba(231,143,35,0.15)]",
+    hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(231,143,35,0.3)]"
+  },
+  {
+    title: "Pending listings",
+    value: "4",
+    trend: "5 listings require approval",
+    trendColor: "text-[#EF4444]",
+    icon: <FileText className="w-5 h-5 text-[#E78F23]" />,
+    glow: "shadow-[0_0_20px_-5px_rgba(239,68,68,0.15)]",
+    hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(239,68,68,0.3)]"
+  },
+  {
+    title: "Active Deals",
+    value: "7",
+    trend: "3 response required",
+    trendColor: "text-[#60A5FA]",
+    icon: <Handshake className="w-5 h-5 text-[#E78F23]" />,
+    glow: "shadow-[0_0_20px_-5px_rgba(96,165,250,0.15)]",
+    hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]"
+  },
+  {
+    title: "Total Listing",
+    value: "4",
+    trend: "2 high priority",
+    trendColor: "text-[#F59E0B]",
+    icon: <ListOrdered className="w-5 h-5 text-[#E78F23]" />,
+    glow: "shadow-[0_0_20px_-5px_rgba(245,158,11,0.15)]",
+    hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)]"
+  }
+];
 
-export default function Home() {
+const pendingApprovals = [
+  {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1631215433436-0568eb2a7f5a?q=80&w=800&auto=format&fit=crop",
+    title: "Rolls-Royces Phantom 2023",
+    dealer: "David John",
+    time: "21 minutes ago",
+    price: "$450,000"
+  },
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=800&auto=format&fit=crop",
+    title: "2024 Lamborghini Revuelto",
+    dealer: "David John",
+    time: "21 minutes ago",
+    price: "$450,000"
+  },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1517524008436-da78a7368b70?q=80&w=800&auto=format&fit=crop",
+    title: "2024 Lamborghini Revuelto",
+    dealer: "David John",
+    time: "21 minutes ago",
+    price: "$450,000"
+  },
+  {
+    id: 4,
+    image: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?q=80&w=800&auto=format&fit=crop",
+    title: "Rolls-Royces Phantom 2023",
+    dealer: "David John",
+    time: "21 minutes ago",
+    price: "$450,000"
+  }
+];
+
+const topDealers = [
+  {
+    name: "James Morrison",
+    email: "jamesmorison3@gmail.com",
+    deals: 8,
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    name: "David Jhonson",
+    email: "david23243@gmail.com",
+    deals: 6,
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    name: "Leo Smith",
+    email: "leosmith4@gmail.com",
+    deals: 4,
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    name: "David Jhonson",
+    email: "david23243@gmail.com",
+    deals: 5,
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop"
+  }
+];
+
+const recentActivity = [
+  {
+    type: "New Listing Submitted",
+    description: "2023 Lamborghini Huracan STO by Prasgew Morris",
+    amount: "$550,000",
+    time: "2 hours ago",
+    status: "new"
+  },
+  {
+    type: "Listing Approved",
+    description: "Rolls-Royces Phantom 2023",
+    amount: "$450,000",
+    time: "4 hours ago",
+    status: "approved"
+  },
+  {
+    type: "Deal Closed",
+    description: "KATINA-MOTOR YACHT",
+    amount: "$720,000",
+    time: "6 hours ago",
+    status: "closed"
+  },
+  {
+    type: "Deal Rejected",
+    description: "KATINA-MOTOR YACHT",
+    amount: "$250,000",
+    time: "8 hours ago",
+    status: "rejected"
+  }
+];
+
+const activeDeals = [
+  { title: "Ferrari Lomo Spider", dealer: "ACB Motors", status: "Negotiation" },
+  { title: "Mercedes-AMG One - Alex Turner", dealer: "Brothers Car", status: "Pending Payment" },
+  { title: "Ferrari Lomo Spider", dealer: "ACB Motors", status: "Negotiation" }
+];
+
+export default function AdminDashboard() {
   return (
-    <div className="space-y-8 relative z-0">
-
-      {/* Header */}
-      <AnimationWrapper type="fade-down" duration={0.5}>
-        <div>
-          <h2 className="text-[40px] font-clash font-medium tracking-wide">Welcome back, Alexander</h2>
-        </div>
-      </AnimationWrapper>
-
-      {/* Stats Row */}
-      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[50px]">
-        <AnimationWrapper type="fade-up" duration={0.5} delay={0.05}>
-          <StatCard icon={<Gavel className="text-primary w-6 h-6" />} count="2" label="Active Bids" />
-        </AnimationWrapper>
-        <AnimationWrapper type="fade-up" duration={0.5} delay={0.1}>
-          <StatCard icon={<ListIcon className="text-primary w-6 h-6" />} count="1" label="My Listings" />
-        </AnimationWrapper>
-        <AnimationWrapper type="fade-up" duration={0.5} delay={0.15}>
-          <StatCard icon={<BadgePercent className="text-primary w-6 h-6" />} count="3" label="Offers Made" />
-        </AnimationWrapper>
-        <AnimationWrapper type="fade-up" duration={0.5} delay={0.2}>
-          <StatCard icon={<Heart className="text-primary w-6 h-6" />} count="8" label="Saved Items" />
-        </AnimationWrapper>
-
-      </div>
-
-      {/* Two Column Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Active Bids */}
-        <AnimationWrapper type="fade-right" duration={0.6} delay={0.1}>
-          <div className="bg-foreground p-7 rounded-2xl border border-primary2/30 shadow-xl hover:border-[#E78F23]/20 transition-colors"
-            style={{
-              boxShadow: "0 66px 19px 0 rgba(178, 114, 31, 0.00), 0 42px 17px 0 rgba(178, 114, 31, 0.01), 0 24px 14px 0 rgba(178, 114, 31, 0.05), 0 11px 11px 0 rgba(178, 114, 31, 0.09), 0 3px 6px 0 rgba(178, 114, 31, 0.10)"
-            }}
-
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <h3 className="text-xl font-clash font-medium">Your Active Bids</h3>
-              <span className="bg-[#D98728] text-white text-[11px] font-bold w-5.5 h-5.5 flex items-center justify-center rounded">2</span>
-            </div>
-
-            <div className="space-y-6">
-              <div className="border-b border-[#2C2C2E]/60 pb-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h4 className="font-semibold text-gray-200">Ferrari 488 Spider</h4>
-                  <span className="bg-green-500/10 text-green-500 text-[11px] px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Leading</span>
-                </div>
-                <div className="flex justify-between text-[13px] mt-2">
-                  <span className="text-gray-500 font-medium">Your bid: $295,000</span>
-                  <span className="text-gray-500 font-medium">Current highest: $295,000</span>
-                </div>
-              </div>
-              <div className="pt-2">
-                <div className="flex justify-between items-start mb-2">
-                  <h4 className="font-semibold text-gray-200">Rolex Submariner</h4>
-                  <span className="bg-red-500/10 text-red-500 text-[11px] px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Outbid</span>
-                </div>
-                <div className="flex justify-between text-[13px] mt-2">
-                  <span className="text-gray-500 font-medium">Your bid: $14,000</span>
-                  <span className="text-gray-500 font-medium">Current highest: $15,500</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </AnimationWrapper>
-
-        {/* Recent Activity */}
-        <AnimationWrapper type="fade-left" duration={0.6} delay={0.15}>
-          <div className="bg-foreground p-7 rounded-2xl border border-primary2/30 shadow-xl hover:border-[#E78F23]/20 transition-colors"
-            style={{
-              boxShadow: "0 66px 19px 0 rgba(178, 114, 31, 0.00), 0 42px 17px 0 rgba(178, 114, 31, 0.01), 0 24px 14px 0 rgba(178, 114, 31, 0.05), 0 11px 11px 0 rgba(178, 114, 31, 0.09), 0 3px 6px 0 rgba(178, 114, 31, 0.10)"
-            }}
-          >
-            <h3 className="text-xl font-clash font-medium mb-8">Recent Activity</h3>
-            <div className="space-y-6">
-              <div className="flex justify-between items-center border-b border-[#2C2C2E]/60 pb-6">
-                <div>
-                  <h4 className="font-medium text-gray-200 m-0 text-[15px]">You placed a bid on Ferrari 488 Spider</h4>
-                  <p className="text-[13px] text-gray-500 mt-1.5 font-medium">2 hours ago</p>
-                </div>
-                <button className="px-5 py-2 border border-primary rounded-lg text-[13px] font-medium text-white hover:bg-[#2C2C2E] transition-colors hover:text-white cursor-pointer">
-                  View Details
-                </button>
-              </div>
-              <div className="flex justify-between items-center pt-2">
-                <div>
-                  <h4 className="font-medium text-gray-200 m-0 text-[15px]">Your offer for Patek Philippe was rejected</h4>
-                  <p className="text-[13px] text-gray-500 mt-1.5 font-medium">1 day ago</p>
-                </div>
-                <button className="px-5 py-2 border border-primary rounded-lg text-[13px] font-medium text-white hover:bg-[#2C2C2E] transition-colors hover:text-white cursor-pointer">
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
-        </AnimationWrapper>
-      </div>
-
-      {/* Active Listing Row */}
-      <div className="pt-4 bg-foreground p-8 rounded-2xl"
-        style={{
-          boxShadow: "0 66px 19px 0 rgba(178, 114, 31, 0.00), 0 42px 17px 0 rgba(178, 114, 31, 0.01), 0 24px 14px 0 rgba(178, 114, 31, 0.05), 0 11px 11px 0 rgba(178, 114, 31, 0.09), 0 3px 6px 0 rgba(178, 114, 31, 0.10)"
-        }}
+    <div className="space-y-10 pb-10">
+      {/* Welcome Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-col gap-1"
       >
-        <AnimationWrapper type="fade-up" duration={0.5} delay={0.05}>
-          <div className="flex items-center gap-3 mb-8">
-            <h3 className="text-[32px] font-clash font-medium">Saved Items</h3>
-            <span className="bg-[#D98728] text-white text-[11px] font-bold w-5.5 h-5.5 flex items-center justify-center rounded">8</span>
+        <h1 className="text-3xl font-clash font-semibold text-white tracking-tight">
+          Welcome back, David Smith
+        </h1>
+      </motion.div>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        {stats.map((stat, i) => (
+          <motion.div
+            key={stat.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className={`group relative bg-[#111113] border border-white/5 rounded-2xl p-6 transition-all duration-500 ${stat.glow} ${stat.hoverGlow} border-white/5 hover:border-[#E78F23]/40`}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2.5 bg-[#E78F23]/10 rounded-xl border border-[#E78F23]/10 group-hover:scale-110 transition-transform duration-500">
+                {stat.icon}
+              </div>
+              <span className="text-sm text-gray-400 font-medium">{stat.title}</span>
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="text-5xl font-clash font-bold text-white tracking-tighter">
+                {stat.value}
+              </span>
+              <span className={`text-[11px] font-semibold uppercase tracking-widest ${stat.trendColor}`}>
+                {stat.trend}
+              </span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Middle Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Pending Approvals (Left 8/12) */}
+        <div className="lg:col-span-8 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-clash font-medium text-white">Pending Approvals</h2>
           </div>
-        </AnimationWrapper>
+          <div className="grid gap-4">
+            {pendingApprovals.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col md:flex-row items-center gap-6 p-4 bg-[#111113] border border-white/5 rounded-2xl hover:border-white/10 hover:bg-white/2 transition-all group"
+              >
+                <div className="relative w-full md:w-44 h-28 rounded-xl overflow-hidden shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="flex-1 space-y-2 py-1">
+                  <h3 className="text-lg font-medium text-white group-hover:text-primary transition-colors">{item.title}</h3>
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
+                    <span className="flex items-center gap-1.5">
+                      By {item.dealer} <CheckCircle2 className="w-3 h-3 text-blue-500" />
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3 h-3" /> {item.time}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col md:items-end gap-3 w-full md:w-auto">
+                  <span className="text-2xl font-clash font-bold text-primary">{item.price}</span>
+                  <div className="flex items-center gap-2 w-full md:w-auto">
+                    <button className="flex-1 md:flex-none px-6 py-2.5 bg-primary hover:bg-primary/90 text-black font-bold text-xs rounded-lg transition-all active:scale-95 shadow-[0_4px_12px_rgba(231,143,35,0.2)]">
+                      Approve
+                    </button>
+                    <button className="flex-1 md:flex-none px-6 py-2.5 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs rounded-lg border border-white/10 transition-all active:scale-95">
+                      Review
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <AnimationWrapper type="zoom" duration={0.5} delay={0.1}>
-            <ListingCard
-              image="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800"
-              title="Ferrari 488 Spider"
-              location="Monaco"
-              price="$295,000"
-              active
-            />
-          </AnimationWrapper>
-          <AnimationWrapper type="zoom" duration={0.5} delay={0.15}>
-            <ListingCard
-              image="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=800"
-              title="Azimut Grande 27M"
-              location="Monaco"
-              price="$295,000"
-            />
-          </AnimationWrapper>
-          <AnimationWrapper type="zoom" duration={0.5} delay={0.2}>
-            <ListingCard
-              image="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800"
-              title="Ferrari 488 Spider"
-              location="Monaco"
-              price="$295,000"
-              active
-            />
-          </AnimationWrapper>
-          <AnimationWrapper type="zoom" duration={0.5} delay={0.25}>
-            <ListingCard
-              image="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=800"
-              title="Azimut Grande 27M"
-              location="Monaco"
-              price="$295,000"
-            />
-          </AnimationWrapper>
+        {/* Top Dealers (Right 4/12) */}
+        <div className="lg:col-span-4 bg-[#111113] border border-white/5 rounded-[2rem] p-8 h-fit shadow-2xl">
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-2xl font-clash font-medium text-white">Dealers</h2>
+            <button className="text-[10px] font-bold text-primary flex items-center gap-1.5 group bg-primary/10 px-4 py-2 rounded-full hover:bg-primary/20 transition-all uppercase tracking-widest">
+              Manage <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+          <div className="space-y-8">
+            {topDealers.map((dealer, i) => (
+              <div key={i} className="flex items-center justify-between group cursor-pointer hover:bg-white/2 -mx-4 px-4 py-2 rounded-xl transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden border border-white/10 group-hover:border-[#E78F23]/50 transition-all ring-offset-2 ring-offset-[#111113] group-hover:ring-1 ring-[#E78F23]/30">
+                    <Image src={dealer.avatar} alt={dealer.name} fill className="object-cover" />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-sm font-semibold text-white flex items-center gap-1.5">
+                      {dealer.name} <CheckCircle2 className="w-3 h-3 text-blue-500 fill-blue-500/10 text-xs shrink-0" />
+                    </span>
+                    <span className="text-[11px] text-gray-500 truncate max-w-[140px] font-medium">{dealer.email}</span>
+                  </div>
+                </div>
+                <div className="text-right shrink-0">
+                  <div className="text-base font-bold text-white group-hover:text-primary transition-colors">{dealer.deals}</div>
+                  <div className="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">active deals</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
+      {/* Bottom Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Recent Activity (Left 7/12) */}
+        <div className="lg:col-span-8 bg-[#111113] border border-white/5 rounded-[2rem] p-8 shadow-2xl overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#E78F23]/5 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none"></div>
+          <h2 className="text-2xl font-clash font-medium text-white mb-10">Recent Activity</h2>
+          <div className="space-y-0">
+            {recentActivity.map((activity, i) => (
+              <div
+                key={i}
+                className={`flex items-start justify-between py-6 ${i !== recentActivity.length - 1 ? 'border-b border-white/5' : ''} group relative z-10`}
+              >
+                <div className="flex items-start gap-5">
+                  <div className="mt-1.5 shrink-0">
+                    <div className={`w-3 h-3 rounded-full ${activity.status === 'new' ? 'bg-primary shadow-[0_0_12px_rgba(234,179,8,0.6)]' :
+                      activity.status === 'approved' ? 'bg-[#4ADE80] shadow-[0_0_12px_rgba(74,222,128,0.6)]' :
+                        activity.status === 'closed' ? 'bg-[#60A5FA] shadow-[0_0_12px_rgba(96,165,250,0.6)]' :
+                          'bg-[#F87171] shadow-[0_0_12px_rgba(248,113,113,0.6)]'
+                      }`} />
+                  </div>
+                  <div>
+                    <h4 className="text-[15px] font-semibold text-white group-hover:text-primary transition-colors">{activity.type}</h4>
+                    <p className="text-xs text-gray-500 mt-1.5 font-medium leading-relaxed">{activity.description}</p>
+                  </div>
+                </div>
+                <div className="text-right shrink-0 ml-4">
+                  <div className="text-base font-bold text-white tracking-tight">{activity.amount}</div>
+                  <div className="text-[10px] text-gray-500 mt-1 font-bold uppercase tracking-wider">{activity.time}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Active Deals (Right 5/12) */}
+        <div className="lg:col-span-4 bg-[#111113] border border-white/5 rounded-[2rem] p-8 shadow-2xl flex flex-col">
+          <h2 className="text-2xl font-clash font-medium text-white mb-10">Active Deals</h2>
+          <div className="space-y-4 flex-1">
+            {activeDeals.map((deal, i) => (
+              <div
+                key={i}
+                className="p-5 bg-white/2 border border-white/5 rounded-2xl flex items-center justify-between hover:bg-white/4 hover:border-primary/20 transition-all group lg:flex-row flex-col gap-4 text-center lg:text-left"
+              >
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-sm font-bold text-white group-hover:text-primary transition-colors line-clamp-1">{deal.title}</h4>
+                  <p className="text-[11px] text-gray-500 mt-1 font-medium">{deal.dealer}</p>
+                </div>
+                <div className={`shrink-0 px-4 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-widest border ${deal.status === 'Negotiation'
+                  ? 'text-primary border-primary/20 bg-primary/5'
+                  : 'text-[#4ADE80] border-[#4ADE80]/20 bg-[#4ADE80]/5'
+                  }`}>
+                  {deal.status}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function StatCard({ icon, count, label }: { icon: React.ReactNode, count: string, label: string }) {
-  return (
-    <div className="bg-foreground border border-primary2/30 p-5 rounded-2xl flex items-center gap-5  transition-all  cursor-default shadow-card h-50.75"
-      style={{
-        boxShadow: "0 66px 19px 0 rgba(178, 114, 31, 0.00), 0 42px 17px 0 rgba(178, 114, 31, 0.01), 0 24px 14px 0 rgba(178, 114, 31, 0.05), 0 11px 11px 0 rgba(178, 114, 31, 0.09), 0 3px 6px 0 rgba(178, 114, 31, 0.10)"
-      }}
-    >
-      <div className="w-13 h-13 bg-[#111113] rounded-xl flex items-center justify-center border border-[#3C3C3E]">
-        {icon}
-      </div>
-      <div>
-        <div className="text-[40px] font-medium font-clash leading-tight">{count}</div>
-        <div className="text-[24px] text-[#FFFDFD] font-normal mt-0.5">{label}</div>
-      </div>
-    </div>
-  );
-}
-
-function ListingCard({ image, title, location, price, active = false }: { image: string, title: string, location: string, price: string, active?: boolean }) {
-  return (
-    <div className="bg-foreground  rounded-[8px] border border-primary2/30 overflow-hidden group hover:border-[#E78F23]/20 transition-all shadow-xl hover:shadow-[#E78F23]/5"
-
-    >
-      <div className="relative h-[217px] overflow-hidden bg-black  ">
-        <img src={image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" />
-
-        {active && (
-          <div className="absolute top-4 right-4 bg-green-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">Active</div>
-        )}
-      </div>
-      <div className="p-5 relative mt-6">
-        <div className="flex justify-between items-center text-[11px] text-gray-400 mb-2 font-medium">
-          <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> {location}</span>
-          <span className="tracking-widest uppercase text-gray-500">Price</span>
-        </div>
-        <div className="flex justify-between items-center mb-5">
-          <h4 className="font-semibold font-inter text-[15px] truncate pr-3 text-white">{title}</h4>
-          <span className="font-normal font-inter text-[17px] text-white">{price}</span>
-        </div>
-
-        <div className="space-y-2.5">
-          <button className="w-full py-2.5 bg-foreground border border-primary  text-white text-[13px] font-medium rounded-md flex items-center justify-center gap-2 transition-colors  hover:text-white">
-            <Eye className="w-4 h-4" />  View Details
-          </button>
-
-        </div>
-      </div>
-    </div>
-  );
-}

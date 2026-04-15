@@ -2,253 +2,443 @@
 
 import React, { useState } from 'react';
 import AnimationWrapper from '@/app/components/AnimationWrapper';
-import { Crown, User, Bell, Shield, CreditCard, Check, Plus, X } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown, CheckCircle2, ClipboardList, Search, Lock, Monitor, Smartphone, LogOut } from 'lucide-react';
 
-export default function BuyerSettings() {
+export default function AdminSettings() {
+    const [activeTab, setActiveTab] = useState('General');
     const [notifications, setNotifications] = useState({
-        bids: true,
-        offers: true,
-        newListings: true,
-        priceDrops: false,
+        newListing: true,
+        dealFlagged: true,
+        dealerActivity: false,
     });
-    
-    const [isAddCardModalOpen, setIsAddCardModalOpen] = useState(false);
+
+    const [moderation, setModeration] = useState({
+        requireApproval: true,
+        autoApproveDealers: false,
+        flagInactiveDeals: true,
+        flagMissingData: false,
+    });
+
+    const [auditLogs, setAuditLogs] = useState({
+        retentionPeriod: '30 days',
+        detailedLogin: false,
+    });
+
+
+    const tabs = ['General', 'Moderation', 'Security', 'Audit and logs'];
 
     const toggleNotification = (key: keyof typeof notifications) => {
-        setNotifications((prev) => ({
-            ...prev,
-            [key]: !prev[key],
-        }));
+        setNotifications(prev => ({ ...prev, [key]: !prev[key] }));
     };
 
     return (
-        <React.Fragment>
-            <AnimationWrapper>
-                <div className="w-full max-w-[800px] mb-20 lg:mb-0">
-                {/* Main Card */}
-                <div className="bg-[#18181A] rounded-[20px] shadow-[0_0_50px_rgba(231,143,35,0.03)] border border-[#E78F23]/10 md:p-10 p-6 relative overflow-hidden"
-                    style={{
-                        boxShadow: "0px 0px 80px 0px rgba(231, 143, 35, 0.05)"
-                    }}
-                >
-                    <h1 className="text-[28px] md:text-[32px] font-bold font-clash text-white mb-10 relative z-10">Settings</h1>
+        <AnimationWrapper>
+            <div className="max-w-[1000px] mb-20">
+                <header className="mb-10">
+                    <h1 className="text-[32px] md:text-[40px] font-bold text-white mb-2 leading-tight">
+                        {activeTab === 'General' ? 'General settings' :
+                            activeTab === 'Moderation' ? 'Moderation settings' :
+                                activeTab === 'Security' ? 'Security settings' : 'Audit and logs'}
+                    </h1>
+                    <p className="text-[#888] text-sm md:text-base">
+                        {activeTab === 'General' ? 'Define your platform identity and defaults' :
+                            activeTab === 'Moderation' ? 'Manage listings approval and automated flag rules' :
+                                activeTab === 'Security' ? 'Configure platform security and access' : 'Control listing approval workflow and quality rules'}
+                    </p>
+                </header>
 
-                    {/* Membership Section */}
-                    <section className="mb-10 relative z-10">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Crown className="w-[18px] h-[18px] text-[#E78F23]" strokeWidth={2} />
-                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-widest uppercase">Membership</h2>
-                        </div>
-                        <div className="bg-[#111113] rounded-xl p-4 flex items-center justify-between border border-[#2A2A2C]">
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-lg bg-[#E78F23]/10 flex items-center justify-center">
-                                    <Crown className="w-5 h-5 text-[#E78F23]" fill="currentColor" strokeWidth={1} />
-                                </div>
-                                <div>
-                                    <h3 className="text-[13px] font-medium text-gray-200">VIP Member</h3>
-                                    <p className="text-[11px] text-gray-500 mt-0.5">1.5% buyer fee - Exclusive access</p>
-                                </div>
-                            </div>
-                            <button className="px-5 py-2 text-xs font-medium text-gray-400 hover:text-white bg-[#1A1A1C] border border-[#2A2A2C] rounded-lg hover:bg-[#252528] transition-colors shrink-0">
-                                Manage
-                            </button>
-                        </div>
-                    </section>
 
-                    {/* Profile Section */}
-                    <section className="mb-10 relative z-10">
-                        <div className="flex items-center gap-2 mb-4">
-                            <User className="w-[18px] h-[18px] text-gray-400" strokeWidth={2} />
-                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-widest uppercase">Profile</h2>
-                        </div>
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-[11px] font-medium text-gray-400 mb-1.5 pl-0.5">Name</label>
-                                <input
-                                    type="text"
-                                    defaultValue="Alexander Kingston"
-                                    className="w-full bg-[#18181B] border border-[#2A2A2C] rounded-[10px] px-4 py-3 text-sm text-gray-300 focus:outline-none focus:border-[#E78F23]/50 focus:ring-1 focus:ring-[#E78F23]/50 transition-all"
-                                />
+                <div className="flex flex-wrap gap-3 mb-12">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${activeTab === tab
+                                ? 'bg-[#facc15] text-black'
+                                : 'bg-[#1A1A1C] text-[#888] hover:text-white hover:bg-[#252528]'
+                                }`}
+                        >
+                            {tab}
+                        </button>
+                    ))}
+                </div>
+
+                {activeTab === 'General' ? (
+                    <div className="space-y-12">
+                        {/* System profile Section */}
+                        <section>
+                            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">System profile</h2>
+                            <div className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-10 shadow-2xl">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-10">
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">Platform Name :</label>
+                                        <input
+                                            type="text"
+                                            placeholder="ExoticWorld"
+                                            defaultValue="ExoticWorld"
+                                            className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all placeholder:text-[#444]"
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">Email Address :</label>
+                                        <input
+                                            type="email"
+                                            placeholder="support@exoticworld.com"
+                                            defaultValue="support@exoticworld.com"
+                                            className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all placeholder:text-[#444]"
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">Default Currency :</label>
+                                        <input
+                                            type="text"
+                                            placeholder="USD - US Dollar"
+                                            defaultValue="USD - US Dollar"
+                                            className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all placeholder:text-[#444]"
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">Region/Time Zone :</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all appearance-none cursor-pointer">
+                                                <option>UTC</option>
+                                                <option>EST</option>
+                                                <option>PST</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                                <ChevronDown className="w-4 h-4 text-[#666]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex justify-end">
+                                    <button className="bg-[#facc15] hover:bg-[#eab308] text-black px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#facc15]/10">
+                                        Save Changes
+                                    </button>
+                                </div>
                             </div>
-                            <div>
-                                <label className="block text-[11px] font-medium text-gray-400 mb-1.5 pl-0.5">Email</label>
-                                <input
-                                    type="email"
-                                    defaultValue="a.kingston@email.com"
-                                    className="w-full bg-[#18181B] border border-[#2A2A2C] rounded-[10px] px-4 py-3 text-sm text-gray-300 focus:outline-none focus:border-[#E78F23]/50 focus:ring-1 focus:ring-[#E78F23]/50 transition-all bg-opacity-70"
-                                />
+                        </section>
+
+                        {/* Notification Section */}
+                        <section>
+                            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Notification</h2>
+                            <div className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-10 shadow-2xl">
+                                <div className="flex justify-between items-center mb-6 px-2">
+                                    <span className="text-[13px] font-medium text-[#666]">Alert Type</span>
+                                    <span className="text-[13px] font-medium text-[#666]">Email</span>
+                                </div>
+
+                                <div className="space-y-1 mb-10">
+                                    <NotificationToggle
+                                        label="New Listing Submissions"
+                                        isActive={notifications.newListing}
+                                        onToggle={() => toggleNotification('newListing')}
+                                    />
+                                    <NotificationToggle
+                                        label="Deal Flagged Alerts"
+                                        isActive={notifications.dealFlagged}
+                                        onToggle={() => toggleNotification('dealFlagged')}
+                                    />
+                                    <NotificationToggle
+                                        label="Dealer activity alerts"
+                                        isActive={notifications.dealerActivity}
+                                        onToggle={() => toggleNotification('dealerActivity')}
+                                    />
+                                </div>
+
+                                <div className="flex justify-end">
+                                    <button className="bg-[#facc15] hover:bg-[#eab308] text-black px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#facc15]/10">
+                                        Save Changes
+                                    </button>
+                                </div>
                             </div>
-                            <div>
-                                <label className="block text-[11px] font-medium text-gray-400 mb-1.5 pl-0.5">Phone</label>
-                                <input
-                                    type="text"
-                                    defaultValue="+1 (555) 000-0000"
-                                    className="w-full bg-[#18181B] border border-[#2A2A2C] rounded-[10px] px-4 py-3 text-sm text-gray-300 focus:outline-none focus:border-[#E78F23]/50 focus:ring-1 focus:ring-[#E78F23]/50 transition-all bg-opacity-70"
-                                />
-                            </div>
-                            <div className="pt-2">
-                                <button className="bg-[#facc15] text-[#111] font-semibold text-xs px-6 py-2.5 rounded-lg hover:bg-opacity-90 transition-all min-w-[120px] text-center">
+                        </section>
+                    </div>
+                ) : activeTab === 'Moderation' ? (
+                    <AnimationWrapper type="fade-up">
+                        <div className="space-y-8">
+                            {/* Approval Workflow */}
+                            <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-8 shadow-2xl">
+                                <div className="flex items-center gap-4 mb-10">
+                                    <div className="w-10 h-10 rounded-xl bg-[#facc15]/10 flex items-center justify-center">
+                                        <CheckCircle2 className="w-6 h-6 text-[#facc15]" />
+                                    </div>
+                                    <h2 className="text-xl md:text-2xl font-bold text-white">Approval Workflow</h2>
+                                </div>
+                                <div className="space-y-6">
+                                    <ToggleItem
+                                        label="Require admin approval for listings"
+                                        subtext="Automatically flag stale listings"
+                                        isActive={moderation.requireApproval}
+                                        onToggle={() => setModeration(prev => ({ ...prev, requireApproval: !prev.requireApproval }))}
+                                    />
+                                    <ToggleItem
+                                        label="Auto approve trusted dealers"
+                                        subtext="All new listings must be manually approved"
+                                        isActive={moderation.autoApproveDealers}
+                                        onToggle={() => setModeration(prev => ({ ...prev, autoApproveDealers: !prev.autoApproveDealers }))}
+                                    />
+                                </div>
+                            </section>
+
+                            {/* Listing quality requirements */}
+                            <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-8 shadow-2xl">
+                                <div className="flex items-center gap-4 mb-10">
+                                    <div className="w-10 h-10 rounded-xl bg-[#facc15]/10 flex items-center justify-center">
+                                        <ClipboardList className="w-6 h-6 text-[#facc15]" />
+                                    </div>
+                                    <h2 className="text-xl md:text-2xl font-bold text-white">Listing quality requirements</h2>
+                                </div>
+                                <div className="space-y-5 ml-2">
+                                    <QualityItem text="Minimum price must be set" />
+                                    <QualityItem text="At least 1 image must be required" />
+                                    <QualityItem text="Description minimum 50 characters" />
+                                </div>
+                            </section>
+
+                            {/* Auto flag rules */}
+                            <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-8 shadow-2xl">
+                                <div className="flex items-center gap-4 mb-10">
+                                    <div className="w-10 h-10 rounded-xl bg-[#facc15]/10 flex items-center justify-center">
+                                        <Search className="w-6 h-6 text-[#facc15]" />
+                                    </div>
+                                    <h2 className="text-xl md:text-2xl font-bold text-white">Auto flag rules</h2>
+                                </div>
+                                <div className="space-y-6">
+                                    <ToggleItem
+                                        label="Flag Deals after 48 hours of inactivity"
+                                        subtext="All new listings must be manually approved"
+                                        isActive={moderation.flagInactiveDeals}
+                                        onToggle={() => setModeration(prev => ({ ...prev, flagInactiveDeals: !prev.flagInactiveDeals }))}
+                                    />
+                                    <ToggleItem
+                                        label="Flag listings with missing Data"
+                                        subtext="Flag incomplete listings submissions"
+                                        isActive={moderation.flagMissingData}
+                                        onToggle={() => setModeration(prev => ({ ...prev, flagMissingData: !prev.flagMissingData }))}
+                                    />
+                                </div>
+                            </section>
+
+                            <div className="flex justify-end pt-4">
+                                <button className="bg-[#facc15] hover:bg-[#eab308] text-black px-10 py-4 rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#facc15]/10 hover:scale-[1.02] active:scale-[0.98]">
                                     Save Changes
                                 </button>
                             </div>
                         </div>
-                    </section>
-
-                    {/* Notifications Section */}
-                    <section className="mb-10 relative z-10">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Bell className="w-[18px] h-[18px] text-gray-400" strokeWidth={2} />
-                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-[0.1em] uppercase">Notifications</h2>
-                        </div>
-                        <div className="space-y-2">
-                            {[
-                                { id: 'bids', label: 'Bids' },
-                                { id: 'offers', label: 'Offers' },
-                                { id: 'newListings', label: 'New Listings' },
-                                { id: 'priceDrops', label: 'Price Drops' },
-                            ].map((item) => (
-                                <div key={item.id} className="bg-[#18181B] rounded-[10px] p-4 flex items-center justify-between border border-[#2A2A2C]">
-                                    <span className="text-[13px] text-gray-400">{item.label}</span>
-                                    <button
-                                        onClick={() => toggleNotification(item.id as keyof typeof notifications)}
-                                        className="relative inline-flex h-[20px] w-[36px] items-center rounded-full transition-colors focus:outline-none bg-[#2C2C2E]"
-                                    >
-                                        <span
-                                            className={`${notifications[item.id as keyof typeof notifications] ? 'translate-x-4 bg-[#facc15]' : 'translate-x-1 bg-white'
-                                                } inline-block h-[14px] w-[14px] transform rounded-full transition-transform duration-200 ease-in-out`}
-                                        />
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Security Section */}
-                    <section className="mb-10 relative z-10">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Shield className="w-[18px] h-[18px] text-gray-400" strokeWidth={2} />
-                            <h2 className="text-[11px] font-semibold text-gray-300 tracking-[0.1em] uppercase">Security</h2>
-                        </div>
-                        <div className="bg-[#18181B] rounded-[10px] p-4 flex items-center justify-between border border-[#2A2A2C] cursor-pointer hover:border-gray-600 transition-colors">
-                            <span className="text-[13px] text-gray-400">Change Password</span>
-                        </div>
-                    </section>
-
-                    {/* Payment Methods Section */}
-                    <section className="relative z-10">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center gap-2">
-                                <CreditCard className="w-[18px] h-[18px] text-gray-400" strokeWidth={2} />
-                                <h2 className="text-[11px] font-semibold text-gray-300 tracking-[0.1em] uppercase">Payment Methods</h2>
-                            </div>
-                            <button 
-                                onClick={() => setIsAddCardModalOpen(true)}
-                                className="flex items-center gap-1.5 text-xs font-medium text-[#facc15] hover:text-[#eab308] transition-colors"
-                            >
-                                <Plus className="w-3.5 h-3.5" strokeWidth={2} />
-                                Add Card
-                            </button>
-                        </div>
-                        <div className="bg-[#18181B] rounded-[10px] p-4 flex items-center justify-between border border-[#2A2A2C]">
-                            <div className="flex items-center gap-4">
-                                <div className="bg-[#333] px-2.5 py-1 rounded-[4px] text-[10px] font-bold text-gray-400 uppercase">
-                                    VISA
-                                </div>
-                                <span className="text-[13px] text-gray-400 tracking-wider">**** **** **** 4892</span>
-                            </div>
-                            <div className="flex items-center gap-1.5 text-[#facc15] shrink-0">
-                                <Check className="w-3.5 h-3.5" strokeWidth={3} />
-                                <span className="text-[11px] font-medium">Default</span>
-                            </div>
-                        </div>
-                    </section>
-
-                </div>
-            </div>
-            </AnimationWrapper>
-
-            {/* Add Card Modal */}
-            <AnimatePresence>
-                {isAddCardModalOpen && (
-                    <React.Fragment>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setIsAddCardModalOpen(false)}
-                            className="fixed inset-0 bg-black/60 z-[100] backdrop-blur-sm"
-                        />
-                        <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none p-4">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                                className="w-full max-w-[420px] bg-[#1a1b1e] rounded-[16px] overflow-hidden pointer-events-auto border border-[#2A2A2C]"
-                            >
-                                {/* Header */}
-                                <div className="flex items-center justify-between p-6 border-b border-[#2A2A2C]">
-                                    <h2 className="text-white text-lg font-medium">Add Payment Method</h2>
-                                    <button
-                                        onClick={() => setIsAddCardModalOpen(false)}
-                                        className="text-gray-400 hover:text-white transition-colors"
-                                    >
-                                        <X className="w-5 h-5" strokeWidth={1.5} />
-                                    </button>
-                                </div>
-
-                                {/* Body */}
-                                <div className="p-6 space-y-5">
-                                    <div>
-                                        <label className="block text-gray-400 text-[13px] mb-2 font-medium">Name on Card</label>
+                    </AnimationWrapper>
+                ) : activeTab === 'Security' ? (
+                    <AnimationWrapper type="fade-up">
+                        <div className="space-y-8">
+                            {/* Change Password */}
+                            <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-8 shadow-2xl">
+                                <h2 className="text-xl md:text-2xl font-bold text-white mb-8 font-primary">Change Password</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-10">
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">Current Password</label>
                                         <input
-                                            type="text"
-                                            placeholder="Alexander Kingston"
-                                            className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
+                                            type="password"
+                                            placeholder="********"
+                                            className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all placeholder:text-[#333]"
                                         />
                                     </div>
-
-                                    <div>
-                                        <label className="block text-gray-400 text-[13px] mb-2 font-medium">Card Number</label>
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">Platform Name :</label>
                                         <input
                                             type="text"
-                                            placeholder="1234 5678 9012 3456"
-                                            className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
+                                            placeholder="support@exoticworld.com"
+                                            className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all placeholder:text-[#333]"
                                         />
                                     </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">New Password</label>
+                                        <input
+                                            type="password"
+                                            placeholder="****************"
+                                            className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all placeholder:text-[#333]"
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-[13px] font-medium text-[#666]">Retype new password</label>
+                                        <input
+                                            type="password"
+                                            placeholder="****************"
+                                            className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all placeholder:text-[#333]"
+                                        />
+                                    </div>
+                                </div>
+                                <button className="border border-[#facc15]/50 text-[#facc15] hover:bg-[#facc15] hover:text-black hover:border-[#facc15] px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300">
+                                    Save Changes
+                                </button>
+                            </section>
 
-                                    <div className="flex gap-4">
-                                        <div className="flex-1">
-                                            <label className="block text-gray-400 text-[13px] mb-2 font-medium">Expiry</label>
-                                            <input
-                                                type="text"
-                                                placeholder="MM/YY"
-                                                className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
-                                            />
-                                        </div>
-                                        <div className="flex-1">
-                                            <label className="block text-gray-400 text-[13px] mb-2 font-medium">CVC</label>
-                                            <input
-                                                type="text"
-                                                placeholder="•••"
-                                                className="w-full bg-[#2a2b2e] border border-[#3a3b3e] rounded-[10px] px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d9ab48] focus:ring-1 focus:ring-[#d9ab48] transition-all"
-                                            />
+                            {/* Require approval toggle */}
+                            <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-8 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                                <div className="flex items-center gap-6">
+                                    <div className="w-12 h-12 rounded-xl bg-[#facc15]/5 border border-[#facc15]/10 flex items-center justify-center">
+                                        <Lock className="w-6 h-6 text-[#facc15]" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-white mb-1">Require admin approval for listings</h3>
+                                        <p className="text-[#666] text-sm">Automatically flag stale listings</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setModeration(prev => ({ ...prev, requireApproval: !prev.requireApproval }))}
+                                    className={`relative inline-flex h-[34px] w-[64px] items-center rounded-full transition-all duration-300 focus:outline-none ${moderation.requireApproval ? 'bg-[#facc15]' : 'bg-[#2A2A2A]'}`}
+                                >
+                                    <div className={`inline-block h-7 w-7 transform rounded-full transition-all duration-300 ${moderation.requireApproval ? 'translate-x-[32px] bg-black shadow-lg' : 'translate-x-1 bg-[#444]'}`} />
+                                </button>
+                            </section>
+
+                            {/* Active Sessions */}
+                            <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-8 shadow-2xl">
+                                <div className="flex items-center gap-4 mb-10">
+                                    <Monitor className="w-6 h-6 text-[#facc15]" />
+                                    <h2 className="text-xl md:text-2xl font-bold text-white">Active Sessions</h2>
+                                </div>
+                                <div className="space-y-6">
+                                    <div className="flex items-center justify-between group">
+                                        <div className="space-y-1">
+                                            <h4 className="text-white font-medium">Mackbook Pro - Chrome</h4>
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[#666] text-sm">New York, US</span>
+                                                <div className="w-1.5 h-1.5 rounded-full bg-[#facc15] animate-pulse" />
+                                                <span className="text-[#facc15] text-[13px] font-medium italic">Current device</span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <button className="w-full bg-[#dcb24a] hover:bg-[#c9a141] text-white font-medium py-3 rounded-[10px] mt-2 transition-colors">
-                                        Add Card
-                                    </button>
+                                    <div className="h-[1px] bg-white/[0.03]" />
 
-                                    <p className="text-center text-xs text-gray-500 mt-2">
-                                        Your card details are encrypted and secure
-                                    </p>
+                                    <div className="flex items-center justify-between group">
+                                        <div className="space-y-1">
+                                            <h4 className="text-white font-medium">i phone 16 pro max - safari</h4>
+                                            <span className="text-[#666] text-sm">New York, US</span>
+                                        </div>
+                                        <button className="w-10 h-10 rounded-xl bg-orange-500/5 hover:bg-orange-500/10 flex items-center justify-center transition-all group/btn border border-transparent hover:border-orange-500/20">
+                                            <LogOut className="w-5 h-5 text-[#f97316] group-hover/btn:scale-110 transition-all" />
+                                        </button>
+                                    </div>
                                 </div>
-                            </motion.div>
+                            </section>
                         </div>
-                    </React.Fragment>
+                    </AnimationWrapper>
+                ) : (
+                    <AnimationWrapper type="fade-up">
+                        <div className="space-y-8">
+                            <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-10 shadow-2xl">
+                                <div className="flex items-center gap-4 mb-10">
+                                    <div className="w-10 h-10 rounded-xl bg-[#facc15]/10 flex items-center justify-center">
+                                        <ClipboardList className="w-6 h-6 text-[#facc15]" />
+                                    </div>
+                                    <h2 className="text-xl md:text-2xl font-bold text-white">Log retention</h2>
+                                </div>
+
+                                <div className="space-y-10">
+                                    {/* Retention Period Dropdown */}
+                                    <div className="space-y-3 max-w-sm">
+                                        <label className="text-[13px] font-medium text-[#666]">Retention Period</label>
+                                        <div className="relative">
+                                            <select
+                                                value={auditLogs.retentionPeriod}
+                                                onChange={(e) => setAuditLogs(prev => ({ ...prev, retentionPeriod: e.target.value }))}
+                                                className="w-full bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-[#facc15]/50 transition-all appearance-none cursor-pointer"
+                                            >
+                                                <option value="7 days">7 days</option>
+                                                <option value="30 days">30 days</option>
+                                                <option value="90 days">90 days</option>
+                                                <option value="1 year">1 year</option>
+                                                <option value="Forever">Forever</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                                <ChevronDown className="w-4 h-4 text-[#666]" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Detailed Login Toggle */}
+                                    <div className="flex items-center justify-between group">
+                                        <div className="space-y-1.5">
+                                            <h4 className={`text-[17px] md:text-[19px] font-medium transition-colors ${auditLogs.detailedLogin ? 'text-white' : 'text-[#aaa]'}`}>
+                                                Detailed Login
+                                            </h4>
+                                            <p className="text-[#666] text-sm max-w-md">
+                                                Capture detailed activity logs for all administrative actions and system events.
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={() => setAuditLogs(prev => ({ ...prev, detailedLogin: !prev.detailedLogin }))}
+                                            className={`relative inline-flex h-[32px] w-[60px] shrink-0 items-center rounded-full transition-all duration-300 focus:outline-none ${auditLogs.detailedLogin ? 'bg-[#facc15]' : 'bg-[#2A2A2A]'}`}
+                                        >
+                                            <div
+                                                className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${auditLogs.detailedLogin ? 'translate-x-[30px] bg-black shadow-lg' : 'translate-x-1 bg-[#444]'}`}
+                                            />
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div className="flex justify-end pt-4">
+                                <button className="bg-[#facc15] hover:bg-[#eab308] text-black px-10 py-4 rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#facc15]/10 hover:scale-[1.02] active:scale-[0.98]">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </AnimationWrapper>
                 )}
-            </AnimatePresence>
-        </React.Fragment>
+
+            </div>
+        </AnimationWrapper>
+    );
+}
+
+function NotificationToggle({ label, isActive, onToggle }: { label: string, isActive: boolean, onToggle: () => void }) {
+    return (
+        <div className="flex items-center justify-between py-5 border-b border-white/[0.03] last:border-0 group transition-all">
+            <span className={`text-[15px] md:text-[17px] font-medium transition-colors ${isActive ? 'text-white' : 'text-[#888]'}`}>
+                {label}
+            </span>
+            <button
+                onClick={onToggle}
+                className={`relative inline-flex h-[30px] w-[56px] items-center rounded-full transition-all duration-300 focus:outline-none ${isActive ? 'bg-[#facc15]' : 'bg-[#2A2A2A]'
+                    }`}
+            >
+                <div
+                    className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${isActive ? 'translate-x-[26px] bg-black shadow-lg' : 'translate-x-1 bg-[#444]'
+                        }`}
+                />
+            </button>
+        </div>
+    );
+}
+
+function ToggleItem({ label, subtext, isActive, onToggle }: { label: string, subtext?: string, isActive: boolean, onToggle: () => void }) {
+    return (
+        <div className="flex items-center justify-between py-2 transition-all">
+            <div className="space-y-1.5">
+                <h4 className={`text-[16px] md:text-[18px] font-medium transition-colors ${isActive ? 'text-white' : 'text-[#aaa]'}`}>
+                    {label}
+                </h4>
+                {subtext && <p className="text-[#666] text-xs md:text-sm font-medium">{subtext}</p>}
+            </div>
+            <button
+                onClick={onToggle}
+                className={`relative inline-flex h-[30px] w-[56px] shrink-0 items-center rounded-full transition-all duration-300 focus:outline-none ${isActive ? 'bg-[#facc15]' : 'bg-[#2A2A2A]'}`}
+            >
+                <div
+                    className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${isActive ? 'translate-x-[26px] bg-black shadow-lg' : 'translate-x-1 bg-[#444]'}`}
+                />
+            </button>
+        </div>
+    );
+}
+
+function QualityItem({ text }: { text: string }) {
+    return (
+        <div className="flex items-center gap-4 py-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#facc15] shadow-[0_0_10px_rgba(250,204,21,0.4)]" />
+            <span className="text-[#888] text-[15px] md:text-[16px] font-medium">{text}</span>
+        </div>
     );
 }

@@ -15,16 +15,17 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { href: "/dealer", icon: LayoutDashboard, label: "Home" },
-  { href: "/dealer/deals", icon: Building2, label: "Deals" },
-  { href: "/dealer/listing", icon: Gavel, label: "Listing" },
-  { href: "/dealer/messages", icon: BadgePercent, label: "Messages" },
-  { href: "/dealer/account", icon: Heart, label: "Account" },
+  { href: "/admin", icon: LayoutDashboard, label: "Overview" },
+  { href: "/admin/listings", icon: Building2, label: "Listings" },
+  { href: "/admin/deals", icon: Gavel, label: "Deals" },
+  { href: "/admin/dealers", icon: BadgePercent, label: "Dealers" },
+  { href: "/admin/activity", icon: Heart, label: "Activity" },
+  { href: "/admin/settings", icon: Settings, label: "Settings" },
 ];
 
 
 
-export default function DealerSidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boolean, onClose: () => void }) {
+export default function AdminSidebar({ isSidebarOpen, onClose }: { isSidebarOpen: boolean, onClose: () => void }) {
   const pathname = usePathname();
 
   return (

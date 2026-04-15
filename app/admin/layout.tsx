@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import Topbar from "../components/Topbar";
-import BuyerSidebar from "../components/BuyerSidebar";
-import DealerSidebar from "../components/DealerSidebar";
+import AdminSidebar from "../components/AdminSidebar";
 
-export default function DealerLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -17,7 +16,7 @@ export default function DealerLayout({
 
   return (
     <div className="flex h-screen bg-background text-white font-inter overflow-hidden relative">
-      <DealerSidebar isSidebarOpen={isSidebarOpen} onClose={onClose} />
+      <AdminSidebar isSidebarOpen={isSidebarOpen} onClose={onClose} />
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden relative">

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function MarketplaceHero() {
   return (
-    <section className="relative h-[500px] w-full overflow-hidden flex flex-col justify-center items-center text-center px-6 pt-20">
+    <section className="relative h-screen w-full overflow-hidden flex flex-col justify-center items-center text-center px-6 pt-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img

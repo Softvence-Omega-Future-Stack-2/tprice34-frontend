@@ -34,7 +34,7 @@ const CATEGORIES = [
 export default function Categories() {
   return (
     <section className="py-32 bg-black px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="container mx-auto">
         <div className="text-center mb-20">
           <motion.h4
             initial={{ opacity: 0, y: 20 }}

@@ -366,7 +366,7 @@ export default function AddListing() {
   };
 
   return (
-    <div className="space-y-8 relative z-0 max-w-[916px] mx-auto">
+    <div className="space-y-8 relative z-0 max-w-229 mx-auto">
       {/* Header Section */}
       <AnimationWrapper type="fade-down" duration={0.5}>
         <div className="mb-6">
@@ -391,7 +391,7 @@ export default function AddListing() {
               />
             </div>
 
-            <div className="flex justify-between items-center text-[13px] font-medium hidden md:flex px-2">
+            <div className="justify-between items-center text-[13px] font-medium hidden md:flex px-2">
               {steps.map((step, index) => (
                 <span
                   key={step}
@@ -432,7 +432,7 @@ export default function AddListing() {
             
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 px-8 py-3 bg-primary2 text-[#111113] rounded-xl text-sm font-bold hover:bg-[#E78F23] transition-all duration-300 shadow-lg shadow-primary2/10 group cursor-pointer ml-auto"
+              className="flex items-center gap-2 px-8 py-3 bg-primary2 text-[#111113] rounded-xl text-sm font-bold hover:bg-primary transition-all duration-300 shadow-lg shadow-primary2/10 group cursor-pointer ml-auto"
             >
               {currentStep === steps.length - 1 ? "Submit Listing" : "Next Step"}
               {currentStep !== steps.length - 1 && (

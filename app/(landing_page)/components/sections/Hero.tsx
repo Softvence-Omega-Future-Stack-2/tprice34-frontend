@@ -36,7 +36,7 @@ export default function Hero() {
   }, [currentIndex, currentAsset]);
 
   return (
-    <section className="relative h-screen min-h-[700px] w-full overflow-hidden flex flex-col justify-center items-center text-center px-6">
+    <section className="relative h-screen min-h-175 w-full overflow-hidden flex flex-col justify-center items-center text-center px-6">
       {/* Background Layers */}
       <div className="absolute inset-0 z-0 bg-black">
         <AnimatePresence mode="wait">
@@ -70,33 +70,33 @@ export default function Hero() {
       </div>
 
       {/* Dark Gradient Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/70 via-black/40 to-black z-[2]" />
+      <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-black/70 via-black/40 to-black z-2" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto space-y-8 pt-20">
+      <div className="relative z-10 max-w-5xl mx-auto   pt-20">
         <motion.h4
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-white text-sm md:text-base font-medium tracking-[0.3em] uppercase"
+          className="text-white text-3xl md:text-[80px] font-normal font-cormorant  "
         >
           Experience the Ultimate
         </motion.h4>
-        
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-serif text-white leading-tight"
+          className="text-5xl md:text-7xl lg:text-[80px] font-medium italic font-cormorant text-land leading-tight"
         >
-          Luxury <span className="text-primary italic">Marketplace</span>
+          Luxury  Marketplace
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto"
+          className="text-white/80 text-lg md:text-xl max-w-2xl font-mont mx-auto"
         >
           Cars, Yachts, Jets, Real Estate - All in one Ecosystem
         </motion.p>
@@ -107,10 +107,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6"
         >
-          <button className="px-10 py-4 border border-primary rounded-sm cursor-pointer text-white text-sm font-semibold tracking-wide hover:bg-primary hover:text-black transition-all duration-300">
+          <button className="px-10 py-4 border border-land rounded-sm cursor-pointer text-white text-sm font-semibold tracking-wide hover:bg-primary hover:text-black transition-all duration-300 font-montserrat">
             Explore Listings
           </button>
-          <button className="px-10 py-4 bg-primary text-black rounded-sm cursor-pointer text-sm font-bold tracking-wide hover:bg-white hover:text-black transition-all duration-300">
+          <button className="px-10 font-montserrat py-4 bg-land text-black rounded-sm cursor-pointer text-sm font-bold tracking-wide hover:bg-white hover:text-black transition-all duration-300  ">
             Become a VIP Buyer
           </button>
         </motion.div>
@@ -120,16 +120,21 @@ export default function Hero() {
           {HERO_ASSETS.map((_, i) => (
             <div
               key={i}
-              className={`h-1 rounded-full transition-all duration-500 ${
-                currentIndex === i ? "w-8 bg-primary" : "w-4 bg-white/20"
-              }`}
+              className={`h-1 rounded-full transition-all duration-500 ${currentIndex === i ? "w-8 bg-primary" : "w-4 bg-white/20"
+                }`}
             />
           ))}
         </div>
       </div>
 
       {/* Stats Bar */}
-      <div className="absolute bottom-0 left-0 w-full z-10 bg-black/60 backdrop-blur-lg border-t border-white/10 hidden md:block">
+      <div className="absolute bottom-0 left-0 w-full z-10 border-t border-white/10 hidden md:block"
+
+        style={{
+          background: "rgba(217, 217, 217, 0.10)",
+          backdropFilter: "blur(6px)",
+        }}
+      >
         <div className="container mx-auto px-12 grid grid-cols-3 divide-x divide-white/10">
           {STATS.map((stat, i) => (
             <motion.div
@@ -139,10 +144,10 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.8 + i * 0.1 }}
               className="py-10 text-center"
             >
-              <h3 className="text-3xl lg:text-4xl font-bold text-primary mb-2">
+              <h3 className="text-3xl lg:text-[32px] font-semibold text-land font-montserrat mb-2">
                 {stat.value}
               </h3>
-              <p className="text-white/50 text-xs font-medium uppercase tracking-[0.2em]">
+              <p className="text-white/50 text-[20px] font-medium font-montserrat uppercase tracking-[0.2em]">
                 {stat.label}
               </p>
             </motion.div>

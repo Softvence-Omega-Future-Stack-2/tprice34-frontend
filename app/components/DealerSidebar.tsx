@@ -37,10 +37,11 @@ export default function DealerSidebar({ isSidebarOpen, onClose }: { isSidebarOpe
       />
 
       <aside
-        className={`fixed lg:static inset-y-0 left-0 w-64 lg:mt-8 lg:ml-8 border border-primary2/30 lg:rounded-[8px] bg-[#18181A] flex flex-col border-r overflow-y-auto shrink-0 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        className={`fixed lg:static inset-y-0 left-0 w-64 lg:mt-8 lg:ml-8 border border-primary/30 lg:rounded-[8px] bg-[#18181A] flex flex-col border-r overflow-y-auto shrink-0 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
         style={{
-          boxShadow: "213px 0 59px 0 rgba(143, 96, 36, 0.00), 136px 0 54px 0 rgba(143, 96, 36, 0.01), 77px 0 46px 0 rgba(143, 96, 36, 0.05), 34px 0 34px 0 rgba(143, 96, 36, 0.09), 9px 0 19px 0 rgba(143, 96, 36, 0.10)"
+          boxShadow: " 50px 0 40px 0 rgba(212, 175, 55, 0.00), 50px 0 40px 0 rgba(212, 175, 55, 0.01), 9px 0 40px 0 rgba(212, 175, 55, 0.05), 35px 0 166px 0 rgba(212, 175, 55, 0.02), -3px 0 43.6px 0 rgba(212, 175, 55, 0.01)"
+          // boxShadow: "213px 0 59px 0 rgba(143, 96, 36, 0.00), 136px 0 54px 0 rgba(143, 96, 36, 0.01), 77px 0 46px 0 rgba(143, 96, 36, 0.05), 34px 0 34px 0 rgba(143, 96, 36, 0.09), 9px 0 19px 0 rgba(143, 96, 36, 0.10)"
         }}
       >
         {/* Logo and Close Button (mobile only) */}
@@ -70,7 +71,7 @@ export default function DealerSidebar({ isSidebarOpen, onClose }: { isSidebarOpe
                   if (window.innerWidth < 1024) onClose();
                 }}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${isActive
-                  ? "bg-[#E78F23] text-white shadow-[0_4px_20px_rgba(231,143,35,0.4)]"
+                  ? "bg-primary text-white shadow-[0_4px_20px_rgba(231,143,35,0.4)]"
                   : "text-gray-400 hover:text-white hover:bg-white/5"
                   }`}
               >

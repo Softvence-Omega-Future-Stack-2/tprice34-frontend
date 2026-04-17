@@ -3,12 +3,13 @@ import React from 'react';
 import AnimationWrapper from '@/app/components/AnimationWrapper';
 import { Search, MapPin, Activity, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const listings = [
   {
     id: 1,
     title: '2024 Lamborghini Revuelto',
-    image: 'https://images.unsplash.com/photo-1698687799564-9b24479e0a29?q=80&w=2670&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2670&auto=format&fit=crop',
     price: 400000,
     activeDeals: 2,
     location: 'New York',
@@ -29,7 +30,7 @@ const listings = [
   {
     id: 3,
     title: '2024 Lamborghini Revuelto',
-    image: 'https://images.unsplash.com/photo-1620882814836-98ecfb8fe465?q=80&w=2670&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=2674&auto=format&fit=crop',
     price: 295000,
     activeDeals: 4,
     location: 'Monaco',
@@ -61,7 +62,7 @@ const listings = [
   {
     id: 6,
     title: '2024 Lamborghini Revuelto',
-    image: 'https://images.unsplash.com/photo-1583122620071-02206771e8cc?q=80&w=2670&auto=format&fit=crop',
+   image: 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?q=80&w=2670&auto=format&fit=crop',
     price: 295000,
     activeDeals: 2,
     location: 'Monaco',
@@ -105,7 +106,7 @@ export default function ListingPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-between gap-4 py-2 border-[#1A1A1A]">
-            <div className="relative w-full sm:max-w-[440px]">
+            <div className="relative w-full sm:max-w-110">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 w-4 h-4" />
               <input
                 type="text"
@@ -114,9 +115,9 @@ export default function ListingPage() {
                 autoComplete="off"
               />
             </div>
-            <button className="bg-[#EAB308] hover:bg-[#D9A506] text-black font-semibold px-6 py-2.5 rounded-lg transition-colors whitespace-nowrap text-sm">
+            <Link href="/dealer/add-listing" className="bg-[#EAB308] hover:bg-[#D9A506] text-black font-semibold px-6 py-2.5 rounded-lg transition-colors whitespace-nowrap text-sm">
               Add Listing
-            </button>
+            </Link>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -191,7 +192,7 @@ export default function ListingPage() {
                     </div>
                     <div className="flex items-center gap-1 text-zinc-400">
                       <MapPin className="w-3.5 h-3.5 text-zinc-500" />
-                      <span className="truncate max-w-[90px]">{item.location}</span>
+                      <span className="truncate max-w-22.5">{item.location}</span>
                     </div>
                   </div>
 
@@ -205,7 +206,7 @@ export default function ListingPage() {
                     </div>
                   </div>
 
-                  <button className="w-full mt-2 border border-[#333] hover:border-[#EAB308] hover:bg-[#EAB308]/10 text-zinc-300 hover:text-white transition-all py-[9px] rounded-lg flex items-center justify-center gap-2 text-sm font-medium">
+                  <button className="w-full mt-2 border border-[#333] hover:border-[#EAB308] hover:bg-[#EAB308]/10 text-zinc-300 hover:text-white transition-all py-2.25 rounded-lg flex items-center justify-center gap-2 text-sm font-medium">
                     {item.activeDeals > 0 ? 'Manage Deals' : 'View Details'}
                     <ArrowRight className="w-4 h-4" />
                   </button>

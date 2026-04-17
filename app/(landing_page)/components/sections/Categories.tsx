@@ -40,7 +40,7 @@ export default function Categories() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4"
+            className="text-[16px] font-montserrat font-normal text-land  tracking-widest uppercase mb-4"
           >
             Browse by Category
           </motion.h4>
@@ -49,7 +49,7 @@ export default function Categories() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-white text-4xl md:text-5xl font-serif"
+            className="text-white text-4xl md:text-5xl font-cormorant font-normal"
           >
             Curated Collections
           </motion.h2>
@@ -64,7 +64,7 @@ export default function Categories() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -10 }}
-              className="group relative h-[450px] overflow-hidden rounded-xl cursor-pointer"
+              className="group relative h-112.5 overflow-hidden rounded-xl cursor-pointer"
             >
               {/* Background Image */}
               <img
@@ -74,7 +74,7 @@ export default function Categories() {
               />
 
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent group-hover:via-black/40 transition-all duration-300" />
+              <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent group-hover:via-black/40 transition-all duration-300" />
 
               {/* Icon / Top Badge */}
               <div className="absolute top-6 left-6 w-12 h-12 rounded-full border border-white/20 backdrop-blur-md flex items-center justify-center text-white bg-white/5">
@@ -83,8 +83,8 @@ export default function Categories() {
 
               {/* Content */}
               <div className="absolute bottom-8 left-8 right-8">
-                <h3 className="text-2xl font-semibold text-white mb-2">{cat.title}</h3>
-                <p className="text-white/60 text-sm">{cat.count}</p>
+                <h3 className="text-[20px] font-normal font-cormorant text-white mb-2">{cat.title}</h3>
+                <p className="text-white/60 text-sm font-montserrat">{cat.count}</p>
               </div>
 
               {/* Hover Border Glow */}

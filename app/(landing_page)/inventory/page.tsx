@@ -13,7 +13,7 @@ export default function MarketplacePage() {
   const [brands, setBrands] = useState<string[]>([]);
   const [conditions, setConditions] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("Best Match");
-  
+
   // Initial states aligned with sidebar sliders
   const [priceRange, setPriceRange] = useState({ min: 0, max: 20000000 });
   const [yearRange, setYearRange] = useState({ min: 1990, max: 2025 });
@@ -21,15 +21,22 @@ export default function MarketplacePage() {
 
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
+  React.useEffect(() => {
+    document.body.classList.add('scrollbar-hide');
+    return () => {
+      document.body.classList.remove('scrollbar-hide');
+    };
+  }, []);
+
   // Filter Logic: coordinated by committed state
   const filteredItems = useMemo(() => {
     return DEMO_ITEMS.filter((item) => {
-      const matchesSearch = 
-        item.title.toLowerCase().includes(search.toLowerCase()) || 
+      const matchesSearch =
+        item.title.toLowerCase().includes(search.toLowerCase()) ||
         item.location.toLowerCase().includes(search.toLowerCase());
-      
+
       const matchesBrand = brands.length === 0 || brands.includes(item.brand) || brands.some(b => item.title.toLowerCase().includes(b.toLowerCase()));
-      
+
       const matchesCondition = conditions.length === 0 || conditions.includes(item.condition);
 
       const matchesPrice = item.price >= priceRange.min && item.price <= priceRange.max;
@@ -56,7 +63,7 @@ export default function MarketplacePage() {
   };
 
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-black min-h-screen  ">
       <MarketplaceHero />
 
       <section className="py-20">

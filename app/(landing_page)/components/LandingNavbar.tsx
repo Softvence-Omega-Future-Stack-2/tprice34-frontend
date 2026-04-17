@@ -20,11 +20,11 @@ interface NavLink {
 const NAV_LINKS: NavLink[] = [
   { name: "Home", href: "/" },
   { 
-    name: "Marketplace", 
-    href: "/marketplace",
+    name: "Inventory", 
+    href: "/inventory",
     subLinks: [
-      { name: "Marketplace", href: "/marketplace" },
-      { name: "Services", href: "/services" },
+      { name: "Inventory", href: "/inventory" },
+      { name: "MarketPlace", href: "/marketplace" },
       { name: "Shop", href: "/shop" },
     ]
   },

@@ -19,17 +19,17 @@ interface NavLink {
 
 const NAV_LINKS: NavLink[] = [
   { name: "Home", href: "/" },
-  { 
-    name: "Inventory", 
+  {
+    name: "Inventory",
     href: "/inventory",
     subLinks: [
       { name: "Inventory", href: "/inventory" },
       { name: "MarketPlace", href: "/marketplace" },
-      { name: "Shop", href: "/shop" },
+      // { name: "Shop", href: "/shop" },
     ]
   },
-  { 
-    name: "Events & Media", 
+  {
+    name: "Events & Media",
     href: "/events",
     subLinks: [
       { name: "Events & Media", href: "/events" },
@@ -56,14 +56,13 @@ export default function LandingNavbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        scrolled ? "bg-black/80 backdrop-blur-lg py-4 border-b border-white/10" : "bg-transparent py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${scrolled ? "bg-black/80 backdrop-blur-lg py-4 border-b border-white/10" : "bg-transparent py-6"
+        }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold tracking-tight text-primary">
+          <span className="text-2xl font-bold tracking-tight text-primary font-montserrat">
             Exotic<span className="text-white">World</span>
           </span>
         </Link>
@@ -85,14 +84,13 @@ export default function LandingNavbar() {
                 <div className="flex items-center gap-1.5 cursor-pointer">
                   <Link
                     href={link.href}
-                    className={`text-sm font-medium transition-colors hover:text-primary ${
-                      isActive ? "text-primary" : "text-white/80"
-                    }`}
+                    className={`text-sm font-montserrat font-normal transition-colors hover:text-land ${isActive ? "text-primary" : "text-white/80"
+                      }`}
                   >
                     {displayName}
                   </Link>
                   {link.subLinks && (
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === link.name ? "rotate-180 text-primary" : "text-white/40"}`} />
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 font-montserrat ${activeDropdown === link.name ? "rotate-180 text-primary" : "text-white/40"}`} />
                   )}
                 </div>
 
@@ -104,16 +102,15 @@ export default function LandingNavbar() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full left-0 pt-6 z-[101]"
+                        className="absolute top-full left-0 pt-6 z-101"
                       >
                         <div className="bg-[#0A0A0A] border border-white/10 rounded-sm p-2 min-w-[200px] shadow-2xl backdrop-blur-xl">
                           {link.subLinks.map((sub) => (
                             <Link
                               key={sub.name}
                               href={sub.href}
-                              className={`block px-4 py-3 text-sm font-medium rounded-sm transition-all hover:bg-primary hover:text-black ${
-                                pathname === sub.href ? "bg-primary/10 text-primary" : "text-white/70"
-                              }`}
+                              className={`block px-4 py-3 text-sm font-montserrat font-normal rounded-sm transition-all hover:bg-primary hover:text-black ${pathname === sub.href ? "bg-primary/10 text-primary" : "text-white/70"
+                                }`}
                             >
                               {sub.name}
                             </Link>
@@ -130,12 +127,12 @@ export default function LandingNavbar() {
 
         {/* Desktop Auth */}
         <div className="hidden lg:flex items-center gap-6">
-          <Link href="/login" className="text-sm font-medium text-white/80 hover:text-white transition-colors">
+          <Link href="/login" className="text-sm font-normal text-white/80 font-montserrat hover:text-white transition-colors">
             Log in
           </Link>
           <Link
             href="/register"
-            className="px-6 py-2.5 rounded-sm border border-primary text-primary text-sm font-semibold hover:bg-primary hover:text-black transition-all duration-300"
+            className="px-6 py-2.5 rounded-sm font-montserrat border border-land text-land text-sm font-normal hover:bg-primary hover:text-black transition-all duration-300"
           >
             Register
           </Link>
@@ -162,25 +159,24 @@ export default function LandingNavbar() {
                   <div className="flex items-center justify-between">
                     <Link
                       href={link.href}
-                      className={`text-lg font-medium transition-colors ${
-                        pathname === link.href ? "text-primary" : "text-white/90"
-                      }`}
+                      className={`text-lg font-medium transition-colors ${pathname === link.href ? "text-primary" : "text-white/90"
+                        }`}
                       onClick={() => !link.subLinks && setIsOpen(false)}
                     >
                       {link.name}
                     </Link>
                     {link.subLinks && (
-                      <button 
+                      <button
                         onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
                         className="p-2 text-white/40"
                       >
-                         <ChevronDown className={`w-5 h-5 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`} />
+                        <ChevronDown className={`w-5 h-5 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`} />
                       </button>
                     )}
                   </div>
-                  
+
                   {link.subLinks && activeDropdown === link.name && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="pl-4 flex flex-col gap-4 border-l border-white/10"
@@ -189,9 +185,8 @@ export default function LandingNavbar() {
                         <Link
                           key={sub.name}
                           href={sub.href}
-                          className={`text-base font-medium transition-colors ${
-                            pathname === sub.href ? "text-primary" : "text-white/60"
-                          }`}
+                          className={`text-base font-medium transition-colors ${pathname === sub.href ? "text-primary" : "text-white/60"
+                            }`}
                           onClick={() => setIsOpen(false)}
                         >
                           {sub.name}

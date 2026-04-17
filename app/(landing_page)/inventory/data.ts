@@ -1,4 +1,4 @@
-import { 
+import {
   Gauge, Cog, Calendar, Ruler, Home, Zap, Plane, Users, Wind, MapPin, Package, FileText, History, Move, Ship
 } from "lucide-react";
 
@@ -50,7 +50,7 @@ export const DEMO_ITEMS: MarketplaceItem[] = [
     location: "Richardson, TX, United State",
     image: "/images/landing/hero-car.png",
     media: [
-      { type: "video", url: "https://assets.mixkit.co/videos/preview/mixkit-red-sports-car-driving-on-a-mountain-road-34531-large.mp4", thumbnail: "/images/landing/hero-car.png" },
+      { type: "video", url: "/video/footer.mp4", thumbnail: "/images/landing/hero-car.png" },
       { type: "image", url: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80&w=1000" },
     ],
     type: "VIP",

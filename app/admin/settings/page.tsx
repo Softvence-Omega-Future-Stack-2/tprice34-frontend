@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import AnimationWrapper from '@/app/components/AnimationWrapper';
-import { ChevronDown, CheckCircle2, ClipboardList, Search, Lock, Monitor, Smartphone, LogOut } from 'lucide-react';
+import { ChevronDown, CheckCircle2, ClipboardList, Search, Lock, Monitor,   LogOut } from 'lucide-react';
 
 export default function AdminSettings() {
     const [activeTab, setActiveTab] = useState('General');
@@ -33,7 +33,7 @@ export default function AdminSettings() {
 
     return (
         <AnimationWrapper>
-            <div className="max-w-[1000px] mb-20">
+            <div className="max-w-250 mb-20">
                 <header className="mb-10">
                     <h1 className="text-[32px] md:text-[40px] font-bold text-white mb-2 leading-tight">
                         {activeTab === 'General' ? 'General settings' :
@@ -54,7 +54,7 @@ export default function AdminSettings() {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${activeTab === tab
-                                ? 'bg-[#facc15] text-black'
+                                ? 'bg-primary text-black'
                                 : 'bg-[#1A1A1C] text-[#888] hover:text-white hover:bg-[#252528]'
                                 }`}
                         >
@@ -112,7 +112,7 @@ export default function AdminSettings() {
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
-                                    <button className="bg-[#facc15] hover:bg-[#eab308] text-black px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#facc15]/10">
+                                    <button className="bg-primary cursor-pointer   text-black px-8 py-3 rounded-xl text-sm font-bold transition-all ">
                                         Save Changes
                                     </button>
                                 </div>
@@ -147,7 +147,7 @@ export default function AdminSettings() {
                                 </div>
 
                                 <div className="flex justify-end">
-                                    <button className="bg-[#facc15] hover:bg-[#eab308] text-black px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#facc15]/10">
+                                    <button className="bg-primary cursor-pointer   text-black px-8 py-3 rounded-xl text-sm font-bold transition-all ">
                                         Save Changes
                                     </button>
                                 </div>
@@ -330,7 +330,7 @@ export default function AdminSettings() {
                             <section className="bg-[#111] border border-white/5 rounded-2xl p-6 md:p-10 shadow-2xl">
                                 <div className="flex items-center gap-4 mb-10">
                                     <div className="w-10 h-10 rounded-xl bg-[#facc15]/10 flex items-center justify-center">
-                                        <ClipboardList className="w-6 h-6 text-[#facc15]" />
+                                        <ClipboardList className="w-6 h-6 text-primary" />
                                     </div>
                                     <h2 className="text-xl md:text-2xl font-bold text-white">Log retention</h2>
                                 </div>
@@ -369,10 +369,10 @@ export default function AdminSettings() {
                                         </div>
                                         <button
                                             onClick={() => setAuditLogs(prev => ({ ...prev, detailedLogin: !prev.detailedLogin }))}
-                                            className={`relative inline-flex h-[32px] w-[60px] shrink-0 items-center rounded-full transition-all duration-300 focus:outline-none ${auditLogs.detailedLogin ? 'bg-[#facc15]' : 'bg-[#2A2A2A]'}`}
+                                            className={`relative inline-flex h-8 w-15 shrink-0 items-center rounded-full transition-all duration-300 focus:outline-none ${auditLogs.detailedLogin ? 'bg-primary' : 'bg-[#2A2A2A]'}`}
                                         >
                                             <div
-                                                className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${auditLogs.detailedLogin ? 'translate-x-[30px] bg-black shadow-lg' : 'translate-x-1 bg-[#444]'}`}
+                                                className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${auditLogs.detailedLogin ? 'translate-x-7.5 bg-black shadow-lg' : 'translate-x-1 bg-[#444]'}`}
                                             />
                                         </button>
                                     </div>
@@ -380,7 +380,7 @@ export default function AdminSettings() {
                             </section>
 
                             <div className="flex justify-end pt-4">
-                                <button className="bg-[#facc15] hover:bg-[#eab308] text-black px-10 py-4 rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#facc15]/10 hover:scale-[1.02] active:scale-[0.98]">
+                                <button className="bg-primary hover:bg-[#eab308] text-black px-10 py-4 rounded-xl text-sm font-bold transition-all shadow-lg cursor-pointer shadow-[#facc15]/10 hover:scale-[1.02] active:scale-[0.98]">
                                     Save Changes
                                 </button>
                             </div>
@@ -395,17 +395,17 @@ export default function AdminSettings() {
 
 function NotificationToggle({ label, isActive, onToggle }: { label: string, isActive: boolean, onToggle: () => void }) {
     return (
-        <div className="flex items-center justify-between py-5 border-b border-white/[0.03] last:border-0 group transition-all">
+        <div className="flex items-center justify-between py-5 border-b border-white/3 last:border-0 group transition-all">
             <span className={`text-[15px] md:text-[17px] font-medium transition-colors ${isActive ? 'text-white' : 'text-[#888]'}`}>
                 {label}
             </span>
             <button
                 onClick={onToggle}
-                className={`relative inline-flex h-[30px] w-[56px] items-center rounded-full transition-all duration-300 focus:outline-none ${isActive ? 'bg-[#facc15]' : 'bg-[#2A2A2A]'
+                className={`relative inline-flex h-7.5 w-14 items-center rounded-full transition-all duration-300 focus:outline-none ${isActive ? 'bg-primary' : 'bg-[#2A2A2A]'
                     }`}
             >
                 <div
-                    className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${isActive ? 'translate-x-[26px] bg-black shadow-lg' : 'translate-x-1 bg-[#444]'
+                    className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${isActive ? 'translate-x-6.5 bg-black shadow-lg' : 'translate-x-1 bg-[#444]'
                         }`}
                 />
             </button>
@@ -424,10 +424,10 @@ function ToggleItem({ label, subtext, isActive, onToggle }: { label: string, sub
             </div>
             <button
                 onClick={onToggle}
-                className={`relative inline-flex h-[30px] w-[56px] shrink-0 items-center rounded-full transition-all duration-300 focus:outline-none ${isActive ? 'bg-[#facc15]' : 'bg-[#2A2A2A]'}`}
+                className={`relative inline-flex h-7.5 w-14 shrink-0 items-center rounded-full transition-all duration-300 focus:outline-none ${isActive ? 'bg-primary' : 'bg-[#2A2A2A]'}`}
             >
                 <div
-                    className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${isActive ? 'translate-x-[26px] bg-black shadow-lg' : 'translate-x-1 bg-[#444]'}`}
+                    className={`inline-block h-6 w-6 transform rounded-full transition-all duration-300 ease-in-out ${isActive ? 'translate-x-6.5 bg-black shadow-lg' : 'translate-x-1 bg-[#444]'}`}
                 />
             </button>
         </div>

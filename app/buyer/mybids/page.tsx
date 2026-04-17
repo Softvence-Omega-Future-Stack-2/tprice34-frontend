@@ -112,7 +112,7 @@ export default function MyBidsPage() {
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6 lg:mb-10">
         <AnimationWrapper type="fade-down" duration={0.5}>
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-clash font-medium text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-clash font-medium text-white">
               My Bids
             </h2>
             <p className="text-gray-400 text-xs sm:text-sm mt-1 font-medium">
@@ -122,7 +122,7 @@ export default function MyBidsPage() {
         </AnimationWrapper>
 
         {/* Category Tabs – scrollable on mobile */}
-        <AnimationWrapper type="fade-down" duration={0.5} delay={0.1} >
+        {/* <AnimationWrapper type="fade-down" duration={0.5} delay={0.1} >
           <div className="overflow-x-auto pb-1 -mx-4 px-4 lg:mx-0 lg:px-0">
             <div className="flex items-center gap-1.5 bg-[#18181A] border border-[#2C2C2E] rounded-full p-1.5 w-max">
               {categories.map((cat) => (
@@ -140,7 +140,7 @@ export default function MyBidsPage() {
               ))}
             </div>
           </div>
-        </AnimationWrapper>
+        </AnimationWrapper> */}
       </div>
 
       {/* Main content – stack on mobile, side‑by‑side on large screens */}

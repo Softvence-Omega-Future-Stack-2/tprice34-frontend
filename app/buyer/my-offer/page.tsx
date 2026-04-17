@@ -321,7 +321,7 @@ function BuyerOffer() {
       <AnimationWrapper type="fade-up">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-          <h1 className="text-4xl md:text-[40px] font-medium font-clash tracking-wide">
+          <h1 className="text-4xl md:text-4xl font-medium font-clash tracking-wide">
             My Offers
           </h1>
 

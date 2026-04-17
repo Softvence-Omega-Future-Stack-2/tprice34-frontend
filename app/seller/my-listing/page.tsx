@@ -81,11 +81,11 @@ const getStatusStyles = (status: string) => {
 
 const SellerListing = () => {
   return (
-    <div className="w-full max-w-[1400px] mx-auto space-y-10 pb-10">
+    <div className="w-full max-w-350 mx-auto space-y-10 pb-10">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <AnimationWrapper type="fade-down">
-          <h1 className="text-4xl font-bold tracking-tight text-white">My Listings</h1>
+          <h1 className="text-4xl font-medium font-clash tracking-tight text-white">My Listings</h1>
         </AnimationWrapper>
 
         <AnimationWrapper type="fade-down" delay={0.1}>
@@ -99,7 +99,7 @@ const SellerListing = () => {
         {/* Filters Section */}
         <AnimationWrapper type="fade-up" delay={0.2}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="relative w-full md:w-[400px]">
+            <div className="relative w-full md:w-100">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
               <input
                 type="text"
@@ -127,7 +127,7 @@ const SellerListing = () => {
             <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-[#E78F23] blur-[2px] opacity-40"></div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[1000px]">
+              <table className="w-full text-left border-collapse min-w-250">
                 <thead>
                   <tr className="border-b border-[#1F1F1F]">
                     <th className="px-8 py-6 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">Item</th>
@@ -143,7 +143,7 @@ const SellerListing = () => {
                     <tr key={item.id} className="hover:bg-white/3 transition-all duration-300 group">
                       <td className="px-8 py-6">
                         <div className="flex items-center gap-5">
-                          <div className="relative w-24 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-[#1A1A1A] border border-[#2D2D2D] transition-transform duration-300 group-hover:scale-105">
+                          <div className="relative w-24 h-16 rounded-xl overflow-hidden shrink-0 bg-[#1A1A1A] border border-[#2D2D2D] transition-transform duration-300 group-hover:scale-105">
                             <Image
                               src={item.image}
                               alt={item.name}

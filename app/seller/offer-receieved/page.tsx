@@ -96,11 +96,11 @@ const StatusBadge = ({ status }: { status: string }) => {
 
 function OfferReceieved() {
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-350 mx-auto">
       <AnimationWrapper type="fade-up">
         {/* Header */}
         <div className="mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3 text-white">
+          <h1 className="text-4xl md:text-4xl font-medium font-clash tracking-tight mb-3 text-white">
             Offers Received
           </h1>
           <p className="text-gray-400 text-lg">
@@ -111,11 +111,11 @@ function OfferReceieved() {
         {/* Offers Container */}
         <div className="relative group">
           {/* Subtle glow effect */}
-          <div className="absolute -inset-px bg-gradient-to-b from-white/10 to-[#E78F23]/20 rounded-2xl blur-sm opacity-20 group-hover:opacity-30 transition-opacity pointer-events-none" />
+          <div className="absolute -inset-px bg-linear-to-b from-white/10 to-[#E78F23]/20 rounded-2xl blur-sm opacity-20 group-hover:opacity-30 transition-opacity pointer-events-none" />
           
           <div className="relative bg-[#111113] rounded-2xl border border-white/5 overflow-hidden shadow-2xl">
             {/* Desktop Table Header */}
-            <div className="hidden lg:grid grid-cols-12 gap-4 px-8 py-5 border-b border-white/5 bg-white/[0.02]">
+            <div className="hidden lg:grid grid-cols-12 gap-4 px-8 py-5 border-b border-white/5 bg-white/2">
               <div className="col-span-4 text-[11px] font-bold uppercase tracking-widest text-gray-500">
                 Item & Details
               </div>
@@ -138,7 +138,7 @@ function OfferReceieved() {
               {offers.map((offer) => (
                 <div
                   key={offer.id}
-                  className="p-6 md:p-8 hover:bg-white/[0.01] transition-all duration-300 group/row"
+                  className="p-6 md:p-8 hover:bg-white/1 transition-all duration-300 group/row"
                 >
                   {/* Desktop Layout */}
                   <div className="hidden lg:grid lg:grid-cols-12 lg:gap-4 lg:items-center">
@@ -203,7 +203,7 @@ function OfferReceieved() {
                               <Clock size={14} className="animate-pulse" /> {offer.statusText}
                             </div>
                           )}
-                          <button className="flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#E78F23]/40 text-xs font-black uppercase tracking-widest text-white bg-white/[0.03] hover:bg-[#E78F23] hover:border-[#E78F23] hover:text-black transition-all duration-300 active:scale-95 group/btn shadow-[0_0_20px_rgba(231,143,35,0)] hover:shadow-[0_0_20px_rgba(231,143,35,0.2)]">
+                          <button className="flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#E78F23]/40 text-xs font-black uppercase tracking-widest text-white bg-white/3 hover:bg-[#E78F23] hover:border-[#E78F23] hover:text-black transition-all duration-300 active:scale-95 group/btn shadow-[0_0_20px_rgba(231,143,35,0)] hover:shadow-[0_0_20px_rgba(231,143,35,0.2)]">
                             <Eye size={16} className="text-[#E78F23] group-hover/btn:text-black transition-colors" /> View Details
                           </button>
                         </div>
@@ -218,7 +218,7 @@ function OfferReceieved() {
                           <h3 className="font-bold text-xl text-white group-hover/row:text-[#E78F23] transition-colors">
                             {offer.item}
                           </h3>
-                          <p className="text-sm text-gray-500 italic italic">
+                          <p className="text-sm text-gray-500   italic">
                             {offer.details}
                           </p>
                         </div>
@@ -263,7 +263,7 @@ function OfferReceieved() {
                                 <Clock size={14} className="animate-pulse" /> {offer.statusText}
                               </div>
                             )}
-                            <button className="flex items-center justify-center gap-3 w-full py-4 rounded-xl border border-[#E78F23]/40 text-xs font-black uppercase tracking-widest text-[#E78F23] bg-white/[0.03] transition-all active:scale-[0.98]">
+                            <button className="flex items-center justify-center gap-3 w-full py-4 rounded-xl border border-[#E78F23]/40 text-xs font-black uppercase tracking-widest text-[#E78F23] bg-white/3 transition-all active:scale-[0.98]">
                               <Eye size={18} /> View Details
                             </button>
                           </div>
@@ -275,7 +275,7 @@ function OfferReceieved() {
             </div>
             
             {/* Footer gradient glow */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E78F23]/40 to-transparent blur-sm" />
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#E78F23]/40 to-transparent blur-sm" />
           </div>
         </div>
       </AnimationWrapper>

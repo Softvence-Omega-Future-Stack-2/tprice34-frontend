@@ -26,7 +26,7 @@ export default function Home() {
       </AnimationWrapper>
 
       {/* Stats Row */}
-      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[50px]">
+      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12.5">
         <AnimationWrapper type="fade-up" duration={0.5} delay={0.05}>
           <StatCard icon={<Gavel className="text-primary w-6 h-6" />} count="2" label="Active Bids" />
         </AnimationWrapper>
@@ -171,7 +171,7 @@ export default function Home() {
 
 function StatCard({ icon, count, label }: { icon: React.ReactNode, count: string, label: string }) {
   return (
-    <div className="bg-foreground border border-primary2/30 p-5 rounded-2xl flex items-center gap-5  transition-all  cursor-default shadow-card h-50.75"
+    <div className="bg-foreground border border-primary/30 p-5 rounded-2xl flex items-center gap-5  transition-all  cursor-default shadow-card h-50.75"
       style={{
         boxShadow: "0 66px 19px 0 rgba(178, 114, 31, 0.00), 0 42px 17px 0 rgba(178, 114, 31, 0.01), 0 24px 14px 0 rgba(178, 114, 31, 0.05), 0 11px 11px 0 rgba(178, 114, 31, 0.09), 0 3px 6px 0 rgba(178, 114, 31, 0.10)"
       }}
@@ -192,7 +192,7 @@ function ListingCard({ image, title, location, price, active = false }: { image:
     <div className="bg-foreground  rounded-[8px] border border-primary2/30 overflow-hidden group hover:border-[#E78F23]/20 transition-all shadow-xl hover:shadow-[#E78F23]/5"
 
     >
-      <div className="relative h-[217px] overflow-hidden bg-black  ">
+      <div className="relative h-54.25 overflow-hidden bg-black  ">
         <img src={image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" />
 
         {active && (

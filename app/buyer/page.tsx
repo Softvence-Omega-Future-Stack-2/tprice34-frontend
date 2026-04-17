@@ -26,7 +26,7 @@ export default function Home() {
       </AnimationWrapper>
 
       {/* Stats Row */}
-      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[50px]">
+      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12.5">
         <AnimationWrapper type="fade-up" duration={0.5} delay={0.05}>
           <StatCard icon={<Gavel className="text-primary w-6 h-6" />} count="2" label="Active Bids" />
         </AnimationWrapper>

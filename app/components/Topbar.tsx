@@ -38,11 +38,11 @@ export default function Topbar({ setIsSidebarOpen }: { setIsSidebarOpen: (open: 
 
         <div className="flex-1 max-w-2xl">
           <div className="relative group">
-            <Search className="absolute left-4 lg:left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-[#E78F23] transition-colors" />
+            <Search className="absolute left-4 lg:left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-primary transition-colors" />
             <input
               type="text"
               placeholder="Search assets..."
-              className="w-full bg-[#18181A] border border-primary2/30 rounded-full py-2.5 lg:py-3.5 pl-10 lg:pl-12 pr-6 text-sm text-white placeholder-gray-500 focus:outline-none focus:shadow-[0_0_15px_rgba(231,143,35,0.1)] transition-all"
+              className="w-full bg-[#18181A] border border-primary/30 rounded-full py-2.5 lg:py-3.5 pl-10 lg:pl-12 pr-6 text-sm text-white placeholder-gray-500 focus:outline-none focus:shadow-[0_0_15px_rgba(231,143,35,0.1)] transition-all"
             />
           </div>
         </div>

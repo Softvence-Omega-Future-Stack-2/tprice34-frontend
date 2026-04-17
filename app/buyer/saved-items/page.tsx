@@ -74,7 +74,7 @@ export default function SavedItems() {
       {/* ── Page Header ── */}
       <div className="mb-6 lg:mb-10">
         <AnimationWrapper type="fade-down" duration={0.5}>
-          <h2 className="text-2xl sm:text-3xl font-clash font-bold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-4xl font-clash font-medium  tracking-tight text-white">
             Saved Items
           </h2>
         </AnimationWrapper>

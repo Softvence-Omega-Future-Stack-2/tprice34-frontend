@@ -21,19 +21,19 @@ export default function BuyerSettings() {
 
     return (
         <AnimationWrapper>
-            <div className="w-full max-w-[800px] mb-20 lg:mb-0">
+            <div className="w-full max-w-200 mb-20 lg:mb-0">
                 {/* Main Card */}
                 <div className="bg-[#18181A] rounded-[20px] shadow-[0_0_50px_rgba(231,143,35,0.03)] border border-[#E78F23]/10 md:p-10 p-6 relative overflow-hidden"
                     style={{
                         boxShadow: "0px 0px 80px 0px rgba(231, 143, 35, 0.05)"
                     }}
                 >
-                    <h1 className="text-[28px] md:text-[32px] font-bold font-clash text-white mb-10 relative z-10">Settings</h1>
+                    <h1 className="text-[28px] md:text-4xl font-medium font-clash text-white mb-10 relative z-10">Settings</h1>
 
                     {/* Membership Section */}
                     <section className="mb-10 relative z-10">
                         <div className="flex items-center gap-2 mb-4">
-                            <Crown className="w-[18px] h-[18px] text-[#E78F23]" strokeWidth={2} />
+                            <Crown className="w-4.5 h-4.5 text-[#E78F23]" strokeWidth={2} />
                             <h2 className="text-[11px] font-semibold text-gray-300 tracking-widest uppercase">Membership</h2>
                         </div>
                         <div className="bg-[#111113] rounded-xl p-4 flex items-center justify-between border border-[#2A2A2C]">

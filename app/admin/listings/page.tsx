@@ -11,7 +11,7 @@ const LISTINGS_DATA = [
     {
         id: 1,
         name: "Rolls-Royals Phantom 2023",
-        image: "https://images.unsplash.com/photo-1631215233157-1941dfaa623e?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=800&auto=format&fit=crop",
         dealer: "Elite Motors",
         price: "$299,00",
         category: "Cars",
@@ -41,7 +41,7 @@ const LISTINGS_DATA = [
     {
         id: 4,
         name: "Rolls-Royals Phantom 2023",
-        image: "https://images.unsplash.com/photo-1631215233157-1941dfaa623e?q=80&w=800&auto=format&fit=crop",
+       image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=800&auto=format&fit=crop",
         dealer: "Elite Motors",
         price: "$350,00",
         category: "Cars",
@@ -51,7 +51,7 @@ const LISTINGS_DATA = [
     {
         id: 5,
         name: "Rolls-Royals Phantom 2023",
-        image: "https://images.unsplash.com/photo-1631215233157-1941dfaa623e?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=800&auto=format&fit=crop",
         dealer: "Elite Motors",
         price: "$350,00",
         category: "Cars",
@@ -97,7 +97,7 @@ export default function AdminListingsPage() {
                             >
                                 {tab}
                                 {activeTab === tab && (
-                                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
+                                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
                                 )}
                             </button>
                         ))}
@@ -107,11 +107,11 @@ export default function AdminListingsPage() {
 
             {/* Table Section */}
             <AnimationWrapper type="fade-up" duration={0.6} delay={0.2}>
-                <div className="bg-[#111111] border border-[#232323] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="bg-[#111111] border border-[#262626] rounded-2xl overflow-hidden shadow-2xl">
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse min-w-[1000px]">
+                        <table className="w-full text-left border-collapse min-w-250">
                             <thead>
-                                <tr className="bg-[#151515] border-b border-primary">
+                                <tr className="bg-[#151515] border-b border-primary/30">
                                     <th className="px-6 py-5 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Listing</th>
                                     <th className="px-6 py-5 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Dealer</th>
                                     <th className="px-6 py-5 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Price</th>
@@ -175,12 +175,12 @@ export default function AdminListingsPage() {
                                                     </>
                                                 )}
                                                 {listing.status === "Approved" && (
-                                                    <button className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg border border-red-500/20 transition-all active:scale-95">
+                                                    <button className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg border border-red-500/20 transition-all active:scale-95 cursor-pointer">
                                                         <Trash2 size={18} />
                                                     </button>
                                                 )}
                                                 {listing.status === "Rejected" && (
-                                                    <button className="px-6 py-2 bg-yellow-500 hover:bg-yellow-400 text-black text-xs font-bold rounded-lg transition-all active:scale-95">
+                                                    <button className="px-6 py-2 bg-primary cursor-pointer text-black text-xs font-bold rounded-lg transition-all active:scale-95">
                                                         Approve
                                                     </button>
                                                 )}

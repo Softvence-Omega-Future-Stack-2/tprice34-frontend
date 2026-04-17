@@ -20,7 +20,7 @@ const stats = [
     value: "12",
     trend: "+2 this week",
     trendColor: "text-[#4ADE80]",
-    icon: <Users className="w-5 h-5 text-[#E78F23]" />,
+    icon: <Users className="w-5 h-5 text-primary" />,
     glow: "shadow-[0_0_20px_-5px_rgba(231,143,35,0.15)]",
     hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(231,143,35,0.3)]"
   },
@@ -29,7 +29,7 @@ const stats = [
     value: "4",
     trend: "5 listings require approval",
     trendColor: "text-[#EF4444]",
-    icon: <FileText className="w-5 h-5 text-[#E78F23]" />,
+    icon: <FileText className="w-5 h-5 text-primary" />,
     glow: "shadow-[0_0_20px_-5px_rgba(239,68,68,0.15)]",
     hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(239,68,68,0.3)]"
   },
@@ -38,7 +38,7 @@ const stats = [
     value: "7",
     trend: "3 response required",
     trendColor: "text-[#60A5FA]",
-    icon: <Handshake className="w-5 h-5 text-[#E78F23]" />,
+    icon: <Handshake className="w-5 h-5 text-primary" />,
     glow: "shadow-[0_0_20px_-5px_rgba(96,165,250,0.15)]",
     hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]"
   },
@@ -47,7 +47,7 @@ const stats = [
     value: "4",
     trend: "2 high priority",
     trendColor: "text-[#F59E0B]",
-    icon: <ListOrdered className="w-5 h-5 text-[#E78F23]" />,
+    icon: <ListOrdered className="w-5 h-5 text-primary" />,
     glow: "shadow-[0_0_20px_-5px_rgba(245,158,11,0.15)]",
     hoverGlow: "group-hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)]"
   }
@@ -56,7 +56,7 @@ const stats = [
 const pendingApprovals = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1631215433436-0568eb2a7f5a?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=800&auto=format&fit=crop",
     title: "Rolls-Royces Phantom 2023",
     dealer: "David John",
     time: "21 minutes ago",
@@ -72,7 +72,7 @@ const pendingApprovals = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1517524008436-da78a7368b70?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=800&auto=format&fit=crop",
     title: "2024 Lamborghini Revuelto",
     dealer: "David John",
     time: "21 minutes ago",
